@@ -10,10 +10,11 @@ config_version=5
 
 [addons]
 
-quick_scenes/quick_run_shortcut=Object(Shortcut,"resource_local_to_scene":false,"resource_name":"Run Quick Scene","events":[Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194340,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+quick_scenes/quick_run_shortcut=Object(Shortcut,"resource_local_to_scene":false,"resource_name":"Run Quick Scene","events":[Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194335,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ],"script":null)
 
-quick_scenes/selected_scene=-1
+quick_scenes/selected_scene=0
+quick_scenes/scene_list=PackedStringArray("uid://cvt2i4jmix0gi")
 
 [application]
 
@@ -21,9 +22,13 @@ config/name="MadGameJam"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="uid://bnnhgo2ylvepb"
 
+[autoload]
+
+GUIDE="*res://addons/guide/guide.gd"
+
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/QuickSceneRunner/plugin.cfg", "res://addons/SimpleTODO/plugin.cfg")
+enabled=PackedStringArray("res://addons/QuickSceneRunner/plugin.cfg", "res://addons/SimpleTODO/plugin.cfg", "res://addons/guide/plugin.cfg")
 
 [file_customization]
 
@@ -34,3 +39,9 @@ folder_colors={
 "res://player/": "red",
 "res://ui/": "green"
 }
+
+[layer_names]
+
+3d_physics/layer_1="Environment"
+3d_physics/layer_2="Interaction"
+3d_physics/layer_3="Player"
