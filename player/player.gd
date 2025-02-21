@@ -1,16 +1,30 @@
 class_name Player
 extends CharacterBody3D
 
-@export_category("Input")
+#region Export Variables
+@export_group("Input")
 @export var input_mapping_context: GUIDEMappingContext
 @export var movement_definition: GUIDEAction
 @export var interaction_definition: GUIDEAction
 
-@export_category("Camera")
+@export_group("Camera")
 @export var camera: Camera
 
-@export_category("Movement")
+@export_group("Movement")
+
 @export var walking_speed: float = 5.0
+
+@export_group("Interaction")
+@export var interaction_manager: InteractionManager
+#endregion
+
+var input_disabled: bool = false:
+	set(val):
+		if val:
+			disable_input()
+		else:
+			enable_input()
+		input_disabled = val
 
 func _ready() -> void:
 	camera.setup(self.rotation_degrees)
@@ -23,6 +37,25 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity.move_toward(Vector3.ZERO, min(1, delta * 20))
 	else:
 		velocity = transform.basis * movement_direction.normalized() * walking_speed
-		
+	
 	move_and_slide()
 	
+	#region Debug
+	if OS.has_feature("editor"):
+		if Input.is_action_just_pressed("debug_toggle_input"):
+			input_disabled = not input_disabled
+		
+		if Input.is_action_just_pressed("debug_quit"):
+			get_tree().quit(0)
+	#endregion
+
+#region HelperFunctions
+func disable_input():
+	camera.stop_receiving_input = true
+	GUIDE.disable_mapping_context(input_mapping_context)
+	velocity = Vector3.ZERO
+
+func enable_input():
+	camera.stop_receiving_input = false
+	GUIDE.enable_mapping_context(input_mapping_context)
+#endregion

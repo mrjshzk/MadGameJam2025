@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://d4dewwt4t3wgv"]
+[gd_scene load_steps=10 format=3 uid="uid://d4dewwt4t3wgv"]
 
 [ext_resource type="Script" uid="uid://cj6mv4dje8y7f" path="res://player/camera/Camera.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://clpuc8vx34ndw" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="Resource" uid="uid://xq2u8obgfqyj" path="res://player/input/input_mapping.tres" id="2_g1dw6"]
 [ext_resource type="Resource" uid="uid://bsheq1aat10ks" path="res://player/input/input_definitions/movement.tres" id="3_qjkh3"]
 [ext_resource type="Resource" uid="uid://c24ek2u6nyxgx" path="res://player/input/input_definitions/interact.tres" id="4_g6k8r"]
+[ext_resource type="Script" uid="uid://ciwoq6gpfxlff" path="res://player/interaction_manager.gd" id="6_g6k8r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
 radius = 0.37
@@ -18,12 +19,13 @@ material = SubResource("StandardMaterial3D_kqu6x")
 radius = 0.37
 height = 1.8
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "interaction_manager")]
 script = ExtResource("1_rkbax")
 input_mapping_context = ExtResource("2_g1dw6")
 movement_definition = ExtResource("3_qjkh3")
 interaction_definition = ExtResource("4_g6k8r")
 camera = NodePath("Camera")
+interaction_manager = NodePath("InteractionManager")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
@@ -43,3 +45,4 @@ metadata/_custom_type_script = "uid://cj6mv4dje8y7f"
 [node name="InteractionManager" type="RayCast3D" parent="."]
 collision_mask = 2
 collide_with_areas = true
+script = ExtResource("6_g6k8r")
