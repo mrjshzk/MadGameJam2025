@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://d4dewwt4t3wgv"]
+[gd_scene load_steps=32 format=3 uid="uid://d4dewwt4t3wgv"]
 
 [ext_resource type="Script" uid="uid://cj6mv4dje8y7f" path="res://player/camera/Camera.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://clpuc8vx34ndw" path="res://player/player.gd" id="1_rkbax"]
@@ -17,6 +17,9 @@
 [ext_resource type="Texture2D" uid="uid://b6ebt3qyrwcs2" path="res://player/crosshair/crosshair001.png" id="10_8t03j"]
 [ext_resource type="AudioStream" uid="uid://bbk73t2qehf48" path="res://player/footsteps/Fantasy_Game_Footstep_Stone_Heavy_C.wav" id="10_bjvpn"]
 [ext_resource type="AudioStream" uid="uid://bd0rtqeed78u7" path="res://player/footsteps/Fantasy_Game_Footstep_Stone_Heavy_D.wav" id="11_s7qer"]
+[ext_resource type="AudioStream" uid="uid://dg8v6gb3pv6do" path="res://player/watering/watering-02.wav" id="13_bjvpn"]
+[ext_resource type="AudioStream" uid="uid://bloig3wlnkowp" path="res://player/watering/watering-03.wav" id="14_s7qer"]
+[ext_resource type="AudioStream" uid="uid://c126xliacd4ee" path="res://player/watering/watering-04.wav" id="15_g4c7l"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
 radius = 0.37
@@ -45,6 +48,13 @@ initial_velocity_max = 3.0
 scale_min = 0.3
 scale_max = 0.5
 scale_curve = SubResource("CurveTexture_2ieo8")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_x7c3f"]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("15_g4c7l")
+stream_1/stream = ExtResource("13_bjvpn")
+stream_2/stream = ExtResource("14_s7qer")
 
 [sub_resource type="Animation" id="Animation_hg6s5"]
 length = 0.001
@@ -139,7 +149,7 @@ _data = {
 radius = 0.3
 height = 1.8
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "interaction_manager", "sway_manager", "footstep_timer")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "interaction_manager", "sway_manager", "footstep_player", "footstep_timer")]
 script = ExtResource("1_rkbax")
 input_mapping_context = ExtResource("2_g1dw6")
 movement_definition = ExtResource("3_qjkh3")
@@ -148,6 +158,7 @@ camera = NodePath("Camera")
 walking_speed = 3.0
 interaction_manager = NodePath("Camera/InteractionManager")
 sway_manager = NodePath("Camera/RegadorController/Sway")
+footstep_player = NodePath("AudioStreamPlayer3D")
 footstep_timer = NodePath("FootstepTimer")
 dirt_sounds = Array[AudioStream]([ExtResource("5_tqiix"), ExtResource("6_e7oew"), ExtResource("7_c35mf"), ExtResource("8_65viv")])
 concrete_sounds = Array[AudioStream]([ExtResource("9_x7c3f"), ExtResource("9_x7c3f"), ExtResource("10_bjvpn"), ExtResource("11_s7qer")])
@@ -162,7 +173,7 @@ script = ExtResource("1_oul6g")
 body = NodePath("..")
 metadata/_custom_type_script = "uid://cj6mv4dje8y7f"
 
-[node name="InteractionManager" type="RayCast3D" parent="Camera" node_paths=PackedStringArray("player", "animation_player", "regador", "particle_emitter", "hud", "interactable_description")]
+[node name="InteractionManager" type="RayCast3D" parent="Camera" node_paths=PackedStringArray("player", "animation_player", "regador", "particle_emitter", "watering_player", "hud", "interactable_description")]
 target_position = Vector3(0, 0, -1.5)
 collision_mask = 2
 script = ExtResource("6_g6k8r")
@@ -172,6 +183,7 @@ regador = NodePath("../RegadorController/Sway/Regador")
 particle_emitter = NodePath("../RegadorController/Sway/Regador/GPUParticles3D")
 interaction_ease_type = 2
 interaction_trans_type = 3
+watering_player = NodePath("../RegadorController/AudioStreamPlayer3D")
 return_ease_type = 2
 return_trans_type = 1
 hud = NodePath("../../CanvasLayer/Control")
@@ -209,6 +221,10 @@ light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
 light_specular = 0.0
 omni_range = 0.12
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Camera/RegadorController"]
+stream = SubResource("AudioStreamRandomizer_x7c3f")
+max_distance = 2.5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -275,3 +291,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="FootstepTimer" type="Timer" parent="."]
+wait_time = 0.6
+autostart = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+max_distance = 4.0
+
+[connection signal="timeout" from="FootstepTimer" to="." method="_on_footstep_timer_timeout"]

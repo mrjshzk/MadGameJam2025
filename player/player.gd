@@ -19,6 +19,7 @@ extends CharacterBody3D
 @export var sway_manager: SwayManager
 
 @export_group("Footsteps")
+@export var footstep_player: AudioStreamPlayer3D
 @export var footstep_timer: Timer
 @export var dirt_sounds: Array[AudioStream]
 @export var concrete_sounds: Array[AudioStream]
@@ -44,9 +45,16 @@ func _physics_process(delta: float) -> void:
 	var movement_direction: Vector3 = movement_definition.value_axis_3d
 	
 	if movement_direction == Vector3.ZERO:
+		if not footstep_timer.is_stopped():
+			footstep_timer.stop()
 		velocity = velocity.move_toward(Vector3.ZERO, min(1, delta * 20))
 	else:
+		if footstep_timer.is_stopped():
+			footstep_timer.start()
 		velocity = transform.basis * movement_direction.normalized() * walking_speed
+	
+	if not is_on_floor():
+		velocity.y -= 16
 	
 	move_and_slide()
 	
@@ -71,3 +79,11 @@ func enable_input():
 	sway_manager.disabled = false
 	GUIDE.enable_mapping_context(input_mapping_context)
 #endregion
+
+func _on_footstep_timer_timeout() -> void:
+	if FootstepTypeManager.current_type == FootstepTypeManager.TYPE.CONCRETE:
+		footstep_player.stream = concrete_sounds.pick_random()
+	else:
+		footstep_player.stream = dirt_sounds.pick_random()
+	footstep_player.pitch_scale = randf_range(0.9, 1.1)
+	footstep_player.play()

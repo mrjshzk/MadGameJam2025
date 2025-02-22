@@ -11,6 +11,8 @@ extends RayCast3D
 @export var interaction_time := 0.5
 @export var interaction_ease_type: Tween.EaseType = 0
 @export var interaction_trans_type: Tween.TransitionType = 0
+@export_subgroup("Audio")
+@export var watering_player : AudioStreamPlayer3D
 
 @export_subgroup("Return to Rest")
 @export var return_time := 0.5
@@ -104,7 +106,7 @@ func animate_interaction(collided_object: Interactable):
 				interaction_time
 			).finished
 	particle_emitter.emitting = true
-		
+	watering_player.play()
 
 func animate_return():
 	await create_tween()\

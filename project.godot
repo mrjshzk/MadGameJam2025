@@ -13,12 +13,12 @@ config_version=5
 quick_scenes/quick_run_shortcut=Object(Shortcut,"resource_local_to_scene":false,"resource_name":"Run Quick Scene","events":[Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194335,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ],"script":null)
 
-quick_scenes/selected_scene=1
-quick_scenes/scene_list=PackedStringArray("uid://mqdbc7ncf5tk", "uid://cicgprie3egj1", "uid://d4dewwt4t3wgv")
+quick_scenes/selected_scene=0
+quick_scenes/scene_list=PackedStringArray("uid://mqdbc7ncf5tk", "uid://cicgprie3egj1", "uid://d4dewwt4t3wgv", "uid://blms1k8l0s33p")
 
 [application]
 
-config/name="MadGameJam"
+config/name="Living Garden"
 config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=144
 config/icon="uid://bnnhgo2ylvepb"
@@ -26,6 +26,7 @@ config/icon="uid://bnnhgo2ylvepb"
 [autoload]
 
 GUIDE="*res://addons/guide/guide.gd"
+FootstepTypeManager="*res://classes/autoloads/footstep_type_manager.gd"
 
 [display]
 
