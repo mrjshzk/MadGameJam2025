@@ -149,7 +149,7 @@ _data = {
 radius = 0.3
 height = 1.8
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "interaction_manager", "sway_manager", "footstep_player", "footstep_timer")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "interaction_manager", "sway_manager", "footstep_player", "footstep_timer", "target_node")]
 script = ExtResource("1_rkbax")
 input_mapping_context = ExtResource("2_g1dw6")
 movement_definition = ExtResource("3_qjkh3")
@@ -162,6 +162,7 @@ footstep_player = NodePath("AudioStreamPlayer3D")
 footstep_timer = NodePath("FootstepTimer")
 dirt_sounds = Array[AudioStream]([ExtResource("5_tqiix"), ExtResource("6_e7oew"), ExtResource("7_c35mf"), ExtResource("8_65viv")])
 concrete_sounds = Array[AudioStream]([ExtResource("9_x7c3f"), ExtResource("9_x7c3f"), ExtResource("10_bjvpn"), ExtResource("11_s7qer")])
+target_node = NodePath("LookAtTarget")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
@@ -296,5 +297,8 @@ autostart = true
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 max_distance = 4.0
+
+[node name="LookAtTarget" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28646, 0)
 
 [connection signal="timeout" from="FootstepTimer" to="." method="_on_footstep_timer_timeout"]

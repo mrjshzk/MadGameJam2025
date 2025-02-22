@@ -23,6 +23,9 @@ extends CharacterBody3D
 @export var footstep_timer: Timer
 @export var dirt_sounds: Array[AudioStream]
 @export var concrete_sounds: Array[AudioStream]
+
+@export_group("IK helper")
+@export var target_node : Node3D
 #endregion
 
 var input_disabled: bool = false:
