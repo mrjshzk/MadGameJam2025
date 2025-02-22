@@ -15,6 +15,7 @@ radius = 0.37
 height = 1.8
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8t03j"]
+particle_flag_rotate_y = true
 emission_shape_offset = Vector3(0, 0, 0.09)
 emission_shape = 1
 emission_sphere_radius = 0.4
@@ -159,7 +160,6 @@ sway_rotation = Vector3(0.2, 0.2, 0)
 rotation_speed = 10.0
 
 [node name="Regador" type="MeshInstance3D" parent="Camera/RegadorController/Sway"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 gi_mode = 2
 mesh = ExtResource("8_rgyib")
 skeleton = NodePath("../../..")
@@ -170,6 +170,14 @@ visible = false
 amount = 60
 process_material = SubResource("ParticleProcessMaterial_8t03j")
 draw_pass_1 = ExtResource("9_hg6s5")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Camera/RegadorController/Sway/Regador"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3573, 1.49518, -2.12827e-08)
+light_energy = 0.01
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_specular = 0.0
+omni_range = 0.12
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -14,7 +14,7 @@ quick_scenes/quick_run_shortcut=Object(Shortcut,"resource_local_to_scene":false,
 ],"script":null)
 
 quick_scenes/selected_scene=1
-quick_scenes/scene_list=PackedStringArray("uid://cvt2i4jmix0gi", "uid://mqdbc7ncf5tk", "uid://bn6xw7hejp6km")
+quick_scenes/scene_list=PackedStringArray("uid://cvt2i4jmix0gi", "uid://mqdbc7ncf5tk", "uid://bgkesljsjbvc5")
 
 [application]
 

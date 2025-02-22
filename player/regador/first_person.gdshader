@@ -34,10 +34,10 @@ uniform float FOV : hint_range(20, 120) = 75;
 
 void vertex() {
     float scale = 1.0 / tan(FOV * 0.5 * PI / -180.0);
-    
+
     PROJECTION_MATRIX[0][0] = scale / (-VIEWPORT_SIZE.x / VIEWPORT_SIZE.y);
     PROJECTION_MATRIX[1][1] = scale;
-}	
+}
 
 void fragment() {
 	vec2 base_uv = UV;
@@ -65,6 +65,6 @@ void fragment() {
 	// Ambient Occlusion: Enabled
 	//AO = dot(texture(texture_ambient_occlusion, base_uv), ao_texture_channel);
 	//AO_LIGHT_AFFECT = ao_light_affect;
-    
+
 	DEPTH = 1.0 - (1.0 - FRAGCOORD.z) * 0.7;
 }
