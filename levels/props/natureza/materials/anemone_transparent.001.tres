@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://mb53fyo5i4i4"]
+
+[ext_resource type="Texture2D" uid="uid://bqdvr5y678dyb" path="res://levels/props/natureza/textures/cenas_anemone_diffuse.png" id="1_17tgy"]
+[ext_resource type="Texture2D" uid="uid://cs1atxnltdjpm" path="res://levels/props/natureza/textures/cenas_anemone_normal.png" id="2_o2vju"]
+
+[resource]
+resource_name = "anemone_transparent.001"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("1_17tgy")
+roughness = 0.8
+normal_enabled = true
+normal_texture = ExtResource("2_o2vju")

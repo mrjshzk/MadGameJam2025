@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dlmd3lk13dtlq"]
+
+[ext_resource type="Texture2D" uid="uid://cuofc1we6l51q" path="res://levels/props/natureza/textures/cenas_narcissus_diffuse.png" id="1_rvr7u"]
+[ext_resource type="Texture2D" uid="uid://cvqn6xepvhr6s" path="res://levels/props/natureza/textures/cenas_narcissus_normal.png" id="2_w5mh3"]
+
+[resource]
+resource_name = "narcissus_opague_1"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("1_rvr7u")
+roughness = 0.8
+normal_enabled = true
+normal_texture = ExtResource("2_w5mh3")

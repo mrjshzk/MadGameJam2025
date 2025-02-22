@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://4nhvoaet7018"]
+
+[ext_resource type="Texture2D" uid="uid://bhrbr7ksx01yo" path="res://levels/props/natureza/textures/cenas_tulip_diffuse_2.png" id="1_x5485"]
+[ext_resource type="Texture2D" uid="uid://bgw3lwblyoe52" path="res://levels/props/natureza/textures/cenas_tulip_normal.png" id="2_3w6wv"]
+
+[resource]
+resource_name = "tulip_opague_1"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("1_x5485")
+roughness = 0.8
+normal_enabled = true
+normal_texture = ExtResource("2_3w6wv")

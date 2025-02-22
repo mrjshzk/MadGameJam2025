@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dy35poudmmt2g"]
+
+[ext_resource type="Texture2D" uid="uid://b0gjn0146kkl3" path="res://levels/props/natureza/textures/cenas_ranunculus_diffuse_8.png" id="1_sit0t"]
+[ext_resource type="Texture2D" uid="uid://dvhfauyel8edk" path="res://levels/props/natureza/textures/cenas_ranunculus_normal.png" id="2_io1h2"]
+
+[resource]
+resource_name = "ranunculus_transparent_1.001"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("1_sit0t")
+roughness = 0.909091
+normal_enabled = true
+normal_texture = ExtResource("2_io1h2")
