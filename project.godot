@@ -14,7 +14,7 @@ quick_scenes/quick_run_shortcut=Object(Shortcut,"resource_local_to_scene":false,
 ],"script":null)
 
 quick_scenes/selected_scene=1
-quick_scenes/scene_list=PackedStringArray("uid://cvt2i4jmix0gi", "uid://mqdbc7ncf5tk")
+quick_scenes/scene_list=PackedStringArray("uid://cvt2i4jmix0gi", "uid://mqdbc7ncf5tk", "uid://bn6xw7hejp6km")
 
 [application]
 
@@ -33,15 +33,15 @@ window/size/viewport_height=1080
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/QuickSceneRunner/plugin.cfg", "res://addons/SimpleTODO/plugin.cfg", "res://addons/guide/plugin.cfg")
+enabled=PackedStringArray("res://addons/QuickSceneRunner/plugin.cfg", "res://addons/SimpleTODO/plugin.cfg", "res://addons/anthonyec.camera_preview/plugin.cfg", "res://addons/guide/plugin.cfg")
 
 [file_customization]
 
 folder_colors={
-"res://characters/": "orange",
 "res://import/": "gray",
 "res://levels/": "yellow",
 "res://player/": "red",
+"res://prefabs/": "orange",
 "res://ui/": "green"
 }
 

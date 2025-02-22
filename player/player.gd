@@ -16,6 +16,7 @@ extends CharacterBody3D
 
 @export_group("Interaction")
 @export var interaction_manager: InteractionManager
+@export var sway_manager: SwayManager
 #endregion
 
 var input_disabled: bool = false:
@@ -30,7 +31,11 @@ func _ready() -> void:
 	camera.setup(self.rotation_degrees)
 	GUIDE.enable_mapping_context(input_mapping_context)
 
+
 func _physics_process(delta: float) -> void:
+	if interaction_definition.value_bool == true:
+		interaction_manager.try_start_interaction()
+	
 	var movement_direction: Vector3 = movement_definition.value_axis_3d
 	
 	if movement_direction == Vector3.ZERO:
@@ -52,10 +57,12 @@ func _physics_process(delta: float) -> void:
 #region HelperFunctions
 func disable_input():
 	camera.stop_receiving_input = true
+	sway_manager.disabled = true
 	GUIDE.disable_mapping_context(input_mapping_context)
 	velocity = Vector3.ZERO
 
 func enable_input():
 	camera.stop_receiving_input = false
+	sway_manager.disabled = false
 	GUIDE.enable_mapping_context(input_mapping_context)
 #endregion

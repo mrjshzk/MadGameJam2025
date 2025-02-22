@@ -3,11 +3,8 @@ extends RayCast3D
 
 @export var player: Player
 
-func _physics_process(delta: float) -> void:
+func try_start_interaction() -> void:
 	if is_colliding():
-		pass
-
-#region HelperFunctions
-func set_input(disable: bool):
-	player.input_disabled = disable
-#endregion
+		var collided_object : StaticBody3D = get_collider()
+		player.input_disabled = true
+		get_tree().create_timer(2.0, false).timeout.connect(func(): player.input_disabled = false)

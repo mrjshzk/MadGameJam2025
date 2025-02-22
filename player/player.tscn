@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d4dewwt4t3wgv"]
+[gd_scene load_steps=12 format=3 uid="uid://d4dewwt4t3wgv"]
 
 [ext_resource type="Script" uid="uid://cj6mv4dje8y7f" path="res://player/camera/Camera.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://clpuc8vx34ndw" path="res://player/player.gd" id="1_rkbax"]
@@ -6,6 +6,8 @@
 [ext_resource type="Resource" uid="uid://bsheq1aat10ks" path="res://player/input/input_definitions/movement.tres" id="3_qjkh3"]
 [ext_resource type="Resource" uid="uid://c24ek2u6nyxgx" path="res://player/input/input_definitions/interact.tres" id="4_g6k8r"]
 [ext_resource type="Script" uid="uid://ciwoq6gpfxlff" path="res://player/interaction_manager.gd" id="6_g6k8r"]
+[ext_resource type="ArrayMesh" uid="uid://eff1ac3i5jvq" path="res://player/regador/regador.res" id="7_boad6"]
+[ext_resource type="Script" uid="uid://dl7vgata4kfnt" path="res://player/regador_controller.gd" id="7_rgyib"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
 radius = 0.37
@@ -19,13 +21,14 @@ material = SubResource("StandardMaterial3D_kqu6x")
 radius = 0.37
 height = 1.8
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "interaction_manager")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "interaction_manager", "sway_manager")]
 script = ExtResource("1_rkbax")
 input_mapping_context = ExtResource("2_g1dw6")
 movement_definition = ExtResource("3_qjkh3")
 interaction_definition = ExtResource("4_g6k8r")
 camera = NodePath("Camera")
-interaction_manager = NodePath("InteractionManager")
+interaction_manager = NodePath("Camera/InteractionManager")
+sway_manager = NodePath("Camera/RegadorController/Sway")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
@@ -42,7 +45,28 @@ script = ExtResource("1_oul6g")
 body = NodePath("..")
 metadata/_custom_type_script = "uid://cj6mv4dje8y7f"
 
-[node name="InteractionManager" type="RayCast3D" parent="."]
+[node name="InteractionManager" type="RayCast3D" parent="Camera" node_paths=PackedStringArray("player")]
+target_position = Vector3(0, 0, -1.5)
 collision_mask = 2
 collide_with_areas = true
 script = ExtResource("6_g6k8r")
+player = NodePath("../..")
+
+[node name="RegadorController" type="Node3D" parent="Camera"]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 0.47969, -0.549616, -0.781628)
+
+[node name="Sway" type="Node3D" parent="Camera/RegadorController" node_paths=PackedStringArray("player")]
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 8.35187e-23, 0, 8.35187e-23, 1, 0, 0, 0)
+script = ExtResource("7_rgyib")
+player = NodePath("../../..")
+sway_treshold = 3.0
+sway_lerp = 5.0
+sway_rotation = Vector3(0.2, 0.2, 0)
+rotation_speed = 10.0
+
+[node name="Regador" type="MeshInstance3D" parent="Camera/RegadorController/Sway"]
+transform = Transform3D(10, 0, -1.69407e-21, 0, 10, 8.35187e-22, 0, 8.35187e-22, 10, 0, 0, 0)
+gi_mode = 2
+mesh = ExtResource("7_boad6")
+skeleton = NodePath("../../..")
