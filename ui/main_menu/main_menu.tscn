@@ -1,38 +1,62 @@
-[gd_scene format=3 uid="uid://cicgprie3egj1"]
+[gd_scene load_steps=3 format=3 uid="uid://cicgprie3egj1"]
 
-[node name="MainMenu" type="Control"]
+[ext_resource type="Script" uid="uid://cqvdjplldjntd" path="res://ui/main_menu/main_menu.gd" id="1_uhj5c"]
+[ext_resource type="PackedScene" uid="uid://um81oit6ne23" path="res://ui/intro/intro_scene.tscn" id="2_mu8pm"]
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("play_button", "options_button", "quit_button", "fade_out")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_uhj5c")
+intro_scene = ExtResource("2_mu8pm")
+play_button = NodePath("MarginContainer/CenterContainer/HBoxContainer/Player")
+options_button = NodePath("MarginContainer/CenterContainer/HBoxContainer/Options")
+quit_button = NodePath("MarginContainer/CenterContainer/HBoxContainer/Quit")
+fade_out = NodePath("ColorRect")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+z_index = 10
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -80.5
-offset_top = -20.0
-offset_right = 80.5
-offset_bottom = 20.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
-[node name="Player" type="Button" parent="HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -112.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 35
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="Player" type="Button" parent="MarginContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Play"
 
-[node name="Options" type="Button" parent="HBoxContainer"]
+[node name="Options" type="Button" parent="MarginContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Options"
 
-[node name="Quit" type="Button" parent="HBoxContainer"]
+[node name="Quit" type="Button" parent="MarginContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Quit"

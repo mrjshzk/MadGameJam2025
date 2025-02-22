@@ -14,13 +14,15 @@ quick_scenes/quick_run_shortcut=Object(Shortcut,"resource_local_to_scene":false,
 ],"script":null)
 
 quick_scenes/selected_scene=0
-quick_scenes/scene_list=PackedStringArray("uid://mqdbc7ncf5tk", "uid://cicgprie3egj1", "uid://d4dewwt4t3wgv", "uid://blms1k8l0s33p")
+quick_scenes/scene_list=PackedStringArray("uid://mqdbc7ncf5tk", "uid://cicgprie3egj1", "uid://d4dewwt4t3wgv", "uid://blms1k8l0s33p", "uid://um81oit6ne23")
 
 [application]
 
 config/name="Living Garden"
 config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=144
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
 config/icon="uid://bnnhgo2ylvepb"
 
 [autoload]

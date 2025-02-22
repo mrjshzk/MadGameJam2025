@@ -1,12 +1,30 @@
-[gd_scene format=3 uid="uid://um81oit6ne23"]
+[gd_scene load_steps=3 format=3 uid="uid://um81oit6ne23"]
 
-[node name="IntroScene" type="Control"]
+[ext_resource type="Script" uid="uid://c7qc3h3e6olkc" path="res://ui/intro/intro_scene.gd" id="1_tafdl"]
+[ext_resource type="PackedScene" uid="uid://mqdbc7ncf5tk" path="res://ui/game_viewport.tscn" id="2_w5ldm"]
+
+[node name="IntroScene" type="Control" node_paths=PackedStringArray("continue_button", "fader")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_tafdl")
+game_scene = ExtResource("2_w5ldm")
+continue_button = NodePath("Button")
+fader = NodePath("Fader")
+
+[node name="Fader" type="ColorRect" parent="."]
+z_index = 10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

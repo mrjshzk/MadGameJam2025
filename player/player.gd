@@ -37,7 +37,6 @@ func _ready() -> void:
 	camera.setup(self.rotation_degrees)
 	GUIDE.enable_mapping_context(input_mapping_context)
 
-
 func _physics_process(delta: float) -> void:
 	if interaction_definition.value_bool == true:
 		interaction_manager.try_start_interaction()

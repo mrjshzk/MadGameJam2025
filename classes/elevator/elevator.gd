@@ -38,7 +38,7 @@ func go_to_floor(floor: FLOOR_TYPE):
 	create_tween()\
 	.set_ease(Tween.EASE_IN_OUT)\
 	.set_trans(Tween.TRANS_SINE)\
-	.tween_property(self, "position:y", position.y + 10, 3.0)\
+	.tween_property(self, "position:y", position.y + 10, 5.0)\
 	.finished.connect(
 		func():
 			moving_player.stop()
