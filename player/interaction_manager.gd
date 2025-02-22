@@ -21,13 +21,8 @@ func try_start_interaction() -> void:
 		var collided_object : StaticBody3D = get_collider()
 		if collided_object is Interactable:
 			var interactable : Interactable = (collided_object as Interactable)
-			set_input_disabled(true)
-			animate_interaction(collided_object)
-			interactable.started_interaction.emit()
-			interactable.finished_interaction.connect(func():
-				set_input_disabled(false)
-				animate_return()
-				, CONNECT_ONE_SHOT)
+			if not interactable.disabled:
+				start_interaction(collided_object)
 
 #region Helper Functions
 func set_input_disabled(disabled: bool):
@@ -42,6 +37,16 @@ var pose_mapping : Dictionary[POSE_TYPE, String] = {
 	POSE_TYPE.REST: "rest_pose",
 	POSE_TYPE.INTERACT: "interaction_pose",
 }
+
+func start_interaction(interactable: Interactable):
+	set_input_disabled(true)
+	if interactable.is_in_group("Regavel"):
+		animate_interaction(interactable)
+	interactable.started_interaction.emit()
+	interactable.finished_interaction.connect(func():
+		set_input_disabled(false)
+		if interactable.is_in_group("Regavel"):
+			animate_return(), CONNECT_ONE_SHOT)
 
 func get_pose(pose_type: POSE_TYPE) -> Transform3D:
 	var target_transform := Transform3D.IDENTITY

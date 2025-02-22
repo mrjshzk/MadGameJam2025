@@ -5,6 +5,7 @@ signal started_interaction
 
 @export var interaction_node_target: Node3D
 @export var interaction_time := 2.0
+@export var disabled := false
 
 func _ready() -> void:
 	started_interaction.connect(on_start_interaction)

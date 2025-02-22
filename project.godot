@@ -46,6 +46,10 @@ folder_colors={
 "res://ui/": "green"
 }
 
+[global_group]
+
+Regavel=""
+
 [input]
 
 debug_toggle_input={

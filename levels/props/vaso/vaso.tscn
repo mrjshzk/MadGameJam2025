@@ -84,7 +84,7 @@ mesh = SubResource("ArrayMesh_o4d7m")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_3y4no")
 
-[node name="Interactable" type="StaticBody3D" parent="." node_paths=PackedStringArray("interaction_node_target")]
+[node name="Interactable" type="StaticBody3D" parent="." node_paths=PackedStringArray("interaction_node_target") groups=["Regavel"]]
 collision_layer = 2
 script = ExtResource("2_u3rrj")
 interaction_node_target = NodePath("Target")

@@ -141,7 +141,7 @@ player = NodePath("../..")
 animation_player = NodePath("../../AnimationPlayer")
 regador = NodePath("../RegadorController/Sway/Regador")
 interaction_ease_type = 2
-interaction_trans_type = 1
+interaction_trans_type = 3
 return_ease_type = 2
 return_trans_type = 1
 
@@ -159,7 +159,6 @@ sway_rotation = Vector3(0.2, 0.2, 0)
 rotation_speed = 10.0
 
 [node name="Regador" type="MeshInstance3D" parent="Camera/RegadorController/Sway"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 gi_mode = 2
 mesh = ExtResource("8_rgyib")
 skeleton = NodePath("../../..")
