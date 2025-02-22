@@ -84,9 +84,10 @@ mesh = SubResource("ArrayMesh_o4d7m")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_3y4no")
 
-[node name="Interactable" type="StaticBody3D" parent="."]
+[node name="Interactable" type="StaticBody3D" parent="." node_paths=PackedStringArray("interaction_node_target")]
 collision_layer = 2
 script = ExtResource("2_u3rrj")
+interaction_node_target = NodePath("Target")
 metadata/_custom_type_script = "uid://dt5b7oc3vwjcp"
 
 [node name="Flower" type="MeshInstance3D" parent="Interactable"]
@@ -96,6 +97,9 @@ mesh = ExtResource("8_arcdu")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.588582, 0)
 shape = SubResource("CylinderShape3D_tx10g")
+
+[node name="Target" type="Node3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08058, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.1693, -9.97102e-08)

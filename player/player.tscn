@@ -136,7 +136,6 @@ metadata/_custom_type_script = "uid://cj6mv4dje8y7f"
 [node name="InteractionManager" type="RayCast3D" parent="Camera" node_paths=PackedStringArray("player", "animation_player", "regador")]
 target_position = Vector3(0, 0, -1.5)
 collision_mask = 2
-collide_with_areas = true
 script = ExtResource("6_g6k8r")
 player = NodePath("../..")
 animation_player = NodePath("../../AnimationPlayer")
@@ -160,6 +159,7 @@ sway_rotation = Vector3(0.2, 0.2, 0)
 rotation_speed = 10.0
 
 [node name="Regador" type="MeshInstance3D" parent="Camera/RegadorController/Sway"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 gi_mode = 2
 mesh = ExtResource("8_rgyib")
 skeleton = NodePath("../../..")

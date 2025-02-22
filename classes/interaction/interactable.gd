@@ -3,6 +3,7 @@ class_name Interactable extends StaticBody3D
 signal finished_interaction
 signal started_interaction
 
+@export var interaction_node_target: Node3D
 @export var interaction_time := 2.0
 
 func _ready() -> void:

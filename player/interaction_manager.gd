@@ -22,7 +22,7 @@ func try_start_interaction() -> void:
 		if collided_object is Interactable:
 			var interactable : Interactable = (collided_object as Interactable)
 			set_input_disabled(true)
-			animate_interaction()
+			animate_interaction(collided_object)
 			interactable.started_interaction.emit()
 			interactable.finished_interaction.connect(func():
 				set_input_disabled(false)
@@ -56,16 +56,32 @@ func get_pose(pose_type: POSE_TYPE) -> Transform3D:
 	target_transform.origin = target_position
 	return target_transform
 
-func animate_interaction():
-	await create_tween()\
+func animate_interaction(collided_object: Interactable):
+	var target_transform := get_pose(POSE_TYPE.INTERACT)
+	var global_pose_pos := regador.to_global(target_transform.origin)
+	var global_interaction_pos := collided_object.interaction_node_target.global_position
+	target_transform.origin = global_interaction_pos
+	
+	var t := create_tween().set_parallel(true)
+	t\
+		.set_ease(interaction_ease_type)\
+		.set_trans(interaction_trans_type)\
+		.tween_property(
+		regador,
+		"global_position",
+		global_interaction_pos,
+		interaction_time
+	)
+	await t\
 			.set_ease(interaction_ease_type)\
 			.set_trans(interaction_trans_type)\
 			.tween_property(
 				regador,
-				"transform",
-				get_pose(POSE_TYPE.INTERACT),
+				"basis",
+				target_transform.basis,
 				interaction_time
 			).finished
+		
 
 func animate_return():
 	await create_tween()\
