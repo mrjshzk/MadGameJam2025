@@ -14,12 +14,13 @@ quick_scenes/quick_run_shortcut=Object(Shortcut,"resource_local_to_scene":false,
 ],"script":null)
 
 quick_scenes/selected_scene=1
-quick_scenes/scene_list=PackedStringArray("uid://cvt2i4jmix0gi", "uid://mqdbc7ncf5tk", "uid://bgkesljsjbvc5")
+quick_scenes/scene_list=PackedStringArray("uid://mqdbc7ncf5tk", "uid://cicgprie3egj1", "uid://d4dewwt4t3wgv")
 
 [application]
 
 config/name="MadGameJam"
 config/features=PackedStringArray("4.4", "Forward Plus")
+run/max_fps=144
 config/icon="uid://bnnhgo2ylvepb"
 
 [autoload]
@@ -49,6 +50,10 @@ folder_colors={
 [global_group]
 
 Regavel=""
+Elevator=""
+Level1=""
+Level2=""
+Level3=""
 
 [input]
 
@@ -67,3 +72,8 @@ debug_quit={
 3d_physics/layer_1="Environment"
 3d_physics/layer_2="Interaction"
 3d_physics/layer_3="Player"
+
+[rendering]
+
+occlusion_culling/use_occlusion_culling=true
+environment/defaults/default_environment="uid://bykxv1n3cb86e"

@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://otkk8aevnaly" path="res://levels/props/vaso/vaso.gd" id="1_p53fy"]
 [ext_resource type="ArrayMesh" uid="uid://bhfe2hui7suxf" path="res://levels/props/natureza/meshes/cenas_Cylinder.res" id="2_tx10g"]
-[ext_resource type="Script" uid="uid://dt5b7oc3vwjcp" path="res://classes/interaction/interactable.gd" id="2_u3rrj"]
 [ext_resource type="ArrayMesh" uid="uid://1mr6e4788urq" path="res://levels/props/natureza/meshes/cenas_Cylinder_005.res" id="3_76xfv"]
 [ext_resource type="ArrayMesh" uid="uid://bjk2gltamyi03" path="res://levels/props/natureza/meshes/cenas_Cylinder_002.res" id="4_mwkmv"]
 [ext_resource type="ArrayMesh" uid="uid://cl2k2hrf3nv3m" path="res://levels/props/natureza/meshes/cenas_Cylinder_008.res" id="5_o4d7m"]
@@ -11,6 +10,7 @@
 [ext_resource type="ArrayMesh" uid="uid://cwblxe7k3uu3d" path="res://levels/props/natureza/meshes/cenas_Cylinder_009.res" id="7_eafsm"]
 [ext_resource type="Material" uid="uid://cniks8dcncxao" path="res://levels/props/vaso/terra.tres" id="7_mwkmv"]
 [ext_resource type="ArrayMesh" uid="uid://bx68dseol8qfp" path="res://levels/props/natureza/meshes/cenas_Cylinder_010.res" id="8_arcdu"]
+[ext_resource type="Script" uid="uid://hkyr2d2tkjj1" path="res://classes/interaction/flower_vase.gd" id="11_7ofo1"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_yjum8"]
 _surfaces = [{
@@ -73,10 +73,11 @@ points = PackedVector3Array(0.302796, 0.2362, -5.78463e-05, 0.294675, 0.116644, 
 height = 1.16187
 radius = 0.227539
 
-[node name="Vaso" type="StaticBody3D" node_paths=PackedStringArray("flower_mesh")]
+[node name="Vaso" type="StaticBody3D" node_paths=PackedStringArray("flower_mesh", "interactable")]
 script = ExtResource("1_p53fy")
 array_meshes = Array[ArrayMesh]([ExtResource("2_tx10g"), ExtResource("3_76xfv"), ExtResource("4_mwkmv"), ExtResource("5_o4d7m"), ExtResource("3_76xfv"), ExtResource("6_7ofo1"), ExtResource("7_eafsm"), ExtResource("8_arcdu")])
 flower_mesh = NodePath("Interactable/Flower")
+interactable = NodePath("Interactable")
 
 [node name="Vaso" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_o4d7m")
@@ -84,15 +85,16 @@ mesh = SubResource("ArrayMesh_o4d7m")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_3y4no")
 
-[node name="Interactable" type="StaticBody3D" parent="." node_paths=PackedStringArray("interaction_node_target") groups=["Regavel"]]
+[node name="Interactable" type="StaticBody3D" parent="." node_paths=PackedStringArray("mesh", "interaction_node_target") groups=["Regavel"]]
 collision_layer = 2
-script = ExtResource("2_u3rrj")
+script = ExtResource("11_7ofo1")
+mesh = NodePath("Flower")
 interaction_node_target = NodePath("Target")
-metadata/_custom_type_script = "uid://dt5b7oc3vwjcp"
+metadata/_custom_type_script = "uid://hkyr2d2tkjj1"
 
 [node name="Flower" type="MeshInstance3D" parent="Interactable"]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.0956831, 0)
-mesh = ExtResource("8_arcdu")
+mesh = ExtResource("6_7ofo1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.588582, 0)

@@ -1,29 +1,50 @@
-[gd_scene load_steps=16 format=3 uid="uid://d4dewwt4t3wgv"]
+[gd_scene load_steps=28 format=3 uid="uid://d4dewwt4t3wgv"]
 
 [ext_resource type="Script" uid="uid://cj6mv4dje8y7f" path="res://player/camera/Camera.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://clpuc8vx34ndw" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="Resource" uid="uid://xq2u8obgfqyj" path="res://player/input/input_mapping.tres" id="2_g1dw6"]
 [ext_resource type="Resource" uid="uid://bsheq1aat10ks" path="res://player/input/input_definitions/movement.tres" id="3_qjkh3"]
 [ext_resource type="Resource" uid="uid://c24ek2u6nyxgx" path="res://player/input/input_definitions/interact.tres" id="4_g6k8r"]
+[ext_resource type="AudioStream" uid="uid://voo04hyaoacc" path="res://player/footsteps/Footstep_Sand_Walking_1_01.WAV" id="5_tqiix"]
+[ext_resource type="AudioStream" uid="uid://b21ukitcpxagy" path="res://player/footsteps/Footstep_Sand_Walking_1_02.WAV" id="6_e7oew"]
 [ext_resource type="Script" uid="uid://ciwoq6gpfxlff" path="res://player/interaction_manager.gd" id="6_g6k8r"]
+[ext_resource type="AudioStream" uid="uid://ug1bh4nobd06" path="res://player/footsteps/Footstep_Sand_Walking_1_03.WAV" id="7_c35mf"]
 [ext_resource type="Script" uid="uid://dl7vgata4kfnt" path="res://player/regador_controller.gd" id="7_rgyib"]
+[ext_resource type="AudioStream" uid="uid://cx3lddy560iq2" path="res://player/footsteps/Footstep_Sand_Walking_1_04.WAV" id="8_65viv"]
 [ext_resource type="ArrayMesh" uid="uid://bb4cfq1kxi8s4" path="res://player/regador/regador.mesh" id="8_rgyib"]
 [ext_resource type="ArrayMesh" uid="uid://bw3aix3u114hv" path="res://player/regador/particles/raindrop.obj" id="9_hg6s5"]
+[ext_resource type="AudioStream" uid="uid://cduns5x0n0e85" path="res://player/footsteps/Fantasy_Game_Footstep_Stone_Heavy_A.wav" id="9_x7c3f"]
+[ext_resource type="Texture2D" uid="uid://b6ebt3qyrwcs2" path="res://player/crosshair/crosshair001.png" id="10_8t03j"]
+[ext_resource type="AudioStream" uid="uid://bbk73t2qehf48" path="res://player/footsteps/Fantasy_Game_Footstep_Stone_Heavy_C.wav" id="10_bjvpn"]
+[ext_resource type="AudioStream" uid="uid://bd0rtqeed78u7" path="res://player/footsteps/Fantasy_Game_Footstep_Stone_Heavy_D.wav" id="11_s7qer"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
 radius = 0.37
 height = 1.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8t03j"]
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="Curve" id="Curve_8t03j"]
+_data = [Vector2(0, 0.52809), 0.0, 0.0, 0, 0, Vector2(0.203252, 1), 0.0, 0.0, 0, 0, Vector2(0.605691, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_2ieo8"]
+curve = SubResource("Curve_8t03j")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8t03j"]
 particle_flag_rotate_y = true
 emission_shape_offset = Vector3(0, 0, 0.09)
 emission_shape = 1
 emission_sphere_radius = 0.4
-direction = Vector3(0, 0, 10)
-initial_velocity_min = 10.0
-initial_velocity_max = 10.0
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 3.0
 scale_min = 0.3
 scale_max = 0.5
+scale_curve = SubResource("CurveTexture_2ieo8")
 
 [sub_resource type="Animation" id="Animation_hg6s5"]
 length = 0.001
@@ -114,14 +135,22 @@ _data = {
 &"rest_pose": SubResource("Animation_8t03j")
 }
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "interaction_manager", "sway_manager")]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_hg6s5"]
+radius = 0.3
+height = 1.8
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "interaction_manager", "sway_manager", "footstep_timer")]
 script = ExtResource("1_rkbax")
 input_mapping_context = ExtResource("2_g1dw6")
 movement_definition = ExtResource("3_qjkh3")
 interaction_definition = ExtResource("4_g6k8r")
 camera = NodePath("Camera")
+walking_speed = 3.0
 interaction_manager = NodePath("Camera/InteractionManager")
 sway_manager = NodePath("Camera/RegadorController/Sway")
+footstep_timer = NodePath("FootstepTimer")
+dirt_sounds = Array[AudioStream]([ExtResource("5_tqiix"), ExtResource("6_e7oew"), ExtResource("7_c35mf"), ExtResource("8_65viv")])
+concrete_sounds = Array[AudioStream]([ExtResource("9_x7c3f"), ExtResource("9_x7c3f"), ExtResource("10_bjvpn"), ExtResource("11_s7qer")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
@@ -133,30 +162,30 @@ script = ExtResource("1_oul6g")
 body = NodePath("..")
 metadata/_custom_type_script = "uid://cj6mv4dje8y7f"
 
-[node name="InteractionManager" type="RayCast3D" parent="Camera" node_paths=PackedStringArray("player", "animation_player", "regador")]
+[node name="InteractionManager" type="RayCast3D" parent="Camera" node_paths=PackedStringArray("player", "animation_player", "regador", "particle_emitter", "hud", "interactable_description")]
 target_position = Vector3(0, 0, -1.5)
 collision_mask = 2
 script = ExtResource("6_g6k8r")
 player = NodePath("../..")
 animation_player = NodePath("../../AnimationPlayer")
 regador = NodePath("../RegadorController/Sway/Regador")
+particle_emitter = NodePath("../RegadorController/Sway/Regador/GPUParticles3D")
 interaction_ease_type = 2
 interaction_trans_type = 3
 return_ease_type = 2
 return_trans_type = 1
+hud = NodePath("../../CanvasLayer/Control")
+interactable_description = NodePath("../../CanvasLayer/Control/Label")
 
 [node name="RegadorController" type="Node3D" parent="Camera"]
 transform = Transform3D(-4.37114e-09, 1.23002e-15, -0.1, 0, 0.1, 1.23002e-15, 0.1, 5.37657e-23, -4.37114e-09, 0.47969, -0.549616, -0.781628)
 
 [node name="Sway" type="Node3D" parent="Camera/RegadorController" node_paths=PackedStringArray("player")]
-physics_interpolation_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 8.35187e-23, 0, 8.35187e-23, 1, 0, 0, 0)
 script = ExtResource("7_rgyib")
 player = NodePath("../../..")
-sway_treshold = 3.0
-sway_lerp = 5.0
-sway_rotation = Vector3(0.2, 0.2, 0)
-rotation_speed = 10.0
+bob_amount = 0.05
+sway_rotation = Vector3(0.2, 0.2, 0.2)
 
 [node name="Regador" type="MeshInstance3D" parent="Camera/RegadorController/Sway"]
 gi_mode = 2
@@ -164,9 +193,12 @@ mesh = ExtResource("8_rgyib")
 skeleton = NodePath("../../..")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Camera/RegadorController/Sway/Regador"]
-transform = Transform3D(2.98023e-08, -0.707107, -0.707107, -2.98023e-08, -0.707107, 0.707107, -1, -2.2638e-08, -1.55294e-22, -2.09316, 1.06602, 2.78777e-09)
-visible = false
-amount = 60
+transform = Transform3D(2.98023e-08, -0.707107, -0.707107, -2.98023e-08, -0.707107, 0.707107, -1, -2.2638e-08, -1.55294e-22, -2.25286, 1.22572, 6.51306e-09)
+material_override = SubResource("StandardMaterial3D_8t03j")
+emitting = false
+amount = 500
+lifetime = 0.7
+one_shot = true
 process_material = SubResource("ParticleProcessMaterial_8t03j")
 draw_pass_1 = ExtResource("9_hg6s5")
 
@@ -182,3 +214,64 @@ omni_range = 0.12
 libraries = {
 &"": SubResource("AnimationLibrary_8t03j")
 }
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+cast_shadow = 0
+gi_mode = 0
+mesh = SubResource("CapsuleMesh_hg6s5")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Crosshair" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Crosshair"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.5
+offset_top = -47.5
+offset_right = 64.5
+offset_bottom = 47.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_8t03j")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -215.0
+offset_top = -104.0
+offset_right = 215.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 50
+text = "Cenas"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FootstepTimer" type="Timer" parent="."]

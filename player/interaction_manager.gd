@@ -7,6 +7,7 @@ extends RayCast3D
 
 @export_group("Animation")
 @export_subgroup("Interaction")
+@export var particle_emitter: GPUParticles3D
 @export var interaction_time := 0.5
 @export var interaction_ease_type: Tween.EaseType = 0
 @export var interaction_trans_type: Tween.TransitionType = 0
@@ -15,6 +16,21 @@ extends RayCast3D
 @export var return_time := 0.5
 @export var return_ease_type: Tween.EaseType = 0
 @export var return_trans_type: Tween.TransitionType = 0
+
+@export_group("UI")
+@export var hud: Control
+@export var interactable_description: Label
+
+func _physics_process(delta: float) -> void:
+	if is_colliding():
+		var collided_object : StaticBody3D = get_collider()
+		if collided_object is Interactable:
+			var interactable : Interactable = (collided_object as Interactable)
+			if not interactable.disabled:
+				hud.show()
+				interactable_description.text = interactable.description
+				return
+	hud.hide()
 
 func try_start_interaction() -> void:
 	if is_colliding():
@@ -42,11 +58,12 @@ func start_interaction(interactable: Interactable):
 	set_input_disabled(true)
 	if interactable.is_in_group("Regavel"):
 		animate_interaction(interactable)
-	interactable.started_interaction.emit()
 	interactable.finished_interaction.connect(func():
 		set_input_disabled(false)
 		if interactable.is_in_group("Regavel"):
 			animate_return(), CONNECT_ONE_SHOT)
+	interactable.started_interaction.emit()
+	
 
 func get_pose(pose_type: POSE_TYPE) -> Transform3D:
 	var target_transform := Transform3D.IDENTITY
@@ -86,6 +103,7 @@ func animate_interaction(collided_object: Interactable):
 				target_transform.basis,
 				interaction_time
 			).finished
+	particle_emitter.emitting = true
 		
 
 func animate_return():

@@ -1,0 +1,29 @@
+class_name LevelObjectiveManager extends Node
+
+var elevator: Elevator
+
+@export var next_floor: Elevator.FLOOR_TYPE
+var interact_count : int = 0
+var interaction_count_max : int = 0
+
+func _ready() -> void:
+	elevator = get_tree().get_first_node_in_group("Elevator")
+	elevator.area.body_exited.connect(initial_close_doors)
+
+func initial_close_doors(body: Node3D):
+	if is_objective_completed(): return
+	if not body is Player: return
+	print("should close")
+	elevator.close_doors()
+
+func increase_count():
+	interact_count += 1
+	if is_objective_completed():
+		elevator.open_and_allow_floor(next_floor)
+
+func register_objective(interactable: Interactable):
+	interaction_count_max += 1
+	interactable.finished_interaction.connect(increase_count)
+
+func is_objective_completed() -> bool:
+	return interact_count == interaction_count_max

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://mqdbc7ncf5tk"]
 
-[ext_resource type="PackedScene" uid="uid://bgkesljsjbvc5" path="res://levels/level_1/level_1.tscn" id="1_wrrs6"]
+[ext_resource type="PackedScene" uid="uid://blms1k8l0s33p" path="res://levels/main/main_level.tscn" id="1_wrrs6"]
 
 [node name="GameViewport" type="Control"]
 layout_mode = 3
@@ -27,4 +27,4 @@ audio_listener_enable_3d = true
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
-[node name="Level1" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_wrrs6")]
+[node name="MainLevel" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_wrrs6")]

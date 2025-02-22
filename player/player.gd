@@ -17,6 +17,11 @@ extends CharacterBody3D
 @export_group("Interaction")
 @export var interaction_manager: InteractionManager
 @export var sway_manager: SwayManager
+
+@export_group("Footsteps")
+@export var footstep_timer: Timer
+@export var dirt_sounds: Array[AudioStream]
+@export var concrete_sounds: Array[AudioStream]
 #endregion
 
 var input_disabled: bool = false:

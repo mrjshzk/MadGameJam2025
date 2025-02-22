@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://cj0i3b81jr30a"]
+
+[ext_resource type="Texture2D" uid="uid://ccsblm7ssrntu" path="res://levels/elevador/textures/elevador_portas_elevador_DefaultMaterial_BaseColor.png" id="1_hf40j"]
+[ext_resource type="Texture2D" uid="uid://bq22q45y7qpui" path="res://levels/elevador/textures/portas_elevador_DefaultMaterial_Metallic.png" id="2_87gpl"]
+[ext_resource type="Texture2D" uid="uid://dljrcdct3ret3" path="res://levels/elevador/textures/elevador_portas_elevador_DefaultMaterial_Metallic-portas_elevador_DefaultMaterial_Roughness.png" id="2_vwcmn"]
+[ext_resource type="Texture2D" uid="uid://cpoyqh3p3o8bg" path="res://levels/elevador/textures/elevador_portas_elevador_DefaultMaterial_Normal.png" id="3_87gpl"]
+
+[resource]
+resource_name = "Material.002"
+cull_mode = 2
+albedo_texture = ExtResource("1_hf40j")
+metallic = 1.0
+metallic_texture = ExtResource("2_87gpl")
+metallic_texture_channel = 2
+roughness = 0.25
+roughness_texture = ExtResource("2_vwcmn")
+normal_enabled = true
+normal_texture = ExtResource("3_87gpl")

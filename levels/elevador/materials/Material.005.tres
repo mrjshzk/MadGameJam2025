@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://dtsdqpts7juj5"]
+
+[ext_resource type="Texture2D" uid="uid://b6s1sy10p7txy" path="res://levels/elevador/textures/elevador_botao_fora_DefaultMaterial_BaseColor.png" id="1_xbhu3"]
+[ext_resource type="Texture2D" uid="uid://f4ymlg6chtkt" path="res://levels/elevador/textures/elevador_botao_fora_DefaultMaterial_Metallic-botao_fora_DefaultMaterial_Roughness.png" id="2_cbdiy"]
+[ext_resource type="Texture2D" uid="uid://3paidoq04aet" path="res://levels/elevador/textures/botao_fora_DefaultMaterial_Metallic.png" id="2_ixa3t"]
+[ext_resource type="Texture2D" uid="uid://bqcyk3wit1pyb" path="res://levels/elevador/textures/elevador_botao_fora_DefaultMaterial_Normal.png" id="3_ixa3t"]
+
+[resource]
+resource_name = "Material.005"
+cull_mode = 2
+albedo_texture = ExtResource("1_xbhu3")
+metallic = 1.0
+metallic_texture = ExtResource("2_ixa3t")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_cbdiy")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_ixa3t")
