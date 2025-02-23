@@ -1,26 +1,22 @@
-[gd_scene load_steps=10 format=3 uid="uid://blms1k8l0s33p"]
+[gd_scene load_steps=9 format=3 uid="uid://blms1k8l0s33p"]
 
 [ext_resource type="Environment" uid="uid://bykxv1n3cb86e" path="res://default_env.tres" id="1_171xp"]
 [ext_resource type="Script" uid="uid://bri8xvkcbb6md" path="res://levels/main/main_level.gd" id="1_c007h"]
 [ext_resource type="PackedScene" uid="uid://bgkesljsjbvc5" path="res://levels/level_1/level_1.tscn" id="1_rhx6h"]
 [ext_resource type="PackedScene" uid="uid://57swsa2eimos" path="res://levels/level_2/level_2.tscn" id="2_fobds"]
 [ext_resource type="PackedScene" uid="uid://d4dewwt4t3wgv" path="res://player/player.tscn" id="3_dvvn7"]
-[ext_resource type="PackedScene" uid="uid://kyg4q6q4phfk" path="res://prefabs/monstro/monstro.tscn" id="3_uo2iw"]
 [ext_resource type="PackedScene" uid="uid://dgy0md1c0im4y" path="res://prefabs/elevador/elevador.tscn" id="4_fylya"]
 [ext_resource type="AudioStream" uid="uid://ddkujfknene0n" path="res://levels/audio/rain_thunder_loop.wav" id="7_urkyg"]
 [ext_resource type="PackedScene" uid="uid://b26im6d21bs3f" path="res://levels/level_3/level_3.tscn" id="9_4sjnk"]
 
-[node name="MainLevel" type="Node3D"]
+[node name="MainLevel" type="Node3D" node_paths=PackedStringArray("world_env")]
 script = ExtResource("1_c007h")
+world_env = NodePath("WorldEnvironment")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_171xp")
 
 [node name="Level1" parent="." instance=ExtResource("1_rhx6h")]
-
-[node name="Monstro" parent="Level1" instance=ExtResource("3_uo2iw")]
-transform = Transform3D(-1, 0, 1.73205, 0, 2, 0, -1.73205, 0, -1, 5.43602, 0.141774, 0.542957)
-visible = false
 
 [node name="Level2" parent="." instance=ExtResource("2_fobds")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.596, 10.1, 0)

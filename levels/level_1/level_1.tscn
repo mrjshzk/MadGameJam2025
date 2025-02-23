@@ -326,7 +326,6 @@ script = ExtResource("5_drths")
 array_meshes = Array[ArrayMesh]([ExtResource("6_owtu7"), ExtResource("7_lbtho"), ExtResource("8_1iwl3"), ExtResource("9_xywve"), ExtResource("7_lbtho"), ExtResource("10_vk63l"), ExtResource("11_f313t"), ExtResource("12_0rvqm")])
 flower_mesh = NodePath("Interactable/Flower")
 interactable = NodePath("Interactable")
-register = false
 
 [node name="Vaso" type="MeshInstance3D" parent="Vaso2"]
 mesh = SubResource("ArrayMesh_o4d7m")
@@ -362,7 +361,6 @@ spot_angle = 13.0
 
 [node name="Vaso3" parent="." instance=ExtResource("6_e6u7d")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4, 0.459694, -2)
-register = false
 
 [node name="Vaso4" type="StaticBody3D" parent="." node_paths=PackedStringArray("flower_mesh", "interactable")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 0.459694, -2)
@@ -370,7 +368,6 @@ script = ExtResource("5_drths")
 array_meshes = Array[ArrayMesh]([ExtResource("6_owtu7"), ExtResource("7_lbtho"), ExtResource("8_1iwl3"), ExtResource("9_xywve"), ExtResource("7_lbtho"), ExtResource("10_vk63l"), ExtResource("11_f313t"), ExtResource("12_0rvqm")])
 flower_mesh = NodePath("Interactable/Flower")
 interactable = NodePath("Interactable")
-register = false
 
 [node name="Vaso" type="MeshInstance3D" parent="Vaso4"]
 mesh = SubResource("ArrayMesh_o4d7m")
