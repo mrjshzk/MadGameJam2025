@@ -11,6 +11,12 @@
 			"stream": [
 				"soft_piano.mp3",
 			]
+		},
+		{
+			"name": "GrandPiano",
+			"stream": [
+				"grand_piano.wav",
+			]
 		}
 		
 	]

@@ -16,6 +16,6 @@ func on_start_interaction():
 	create_tween().tween_property(
 		mesh,
 		"scale",
-		Vector3.ONE * 0.075,
+		Vector3.ONE * 0.025,
 		1.5
 	)

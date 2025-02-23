@@ -16,7 +16,7 @@ func _ready() -> void:
 				return
 			if not elevator.current_floor == Elevator.FLOOR_TYPE.FLOOR_2:
 				return
-			GlobalMusicPlayer.fade_to_track("Ethereal", 0.3, 5.0)
+			GlobalMusicPlayer.fade_to_track("Ethereal", 0.2, 5.0)
 	)
 
 var mat : StandardMaterial3D = preload("res://levels/materials/concrete_1/concrete_1.tres")

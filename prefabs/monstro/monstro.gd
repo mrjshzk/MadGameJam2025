@@ -9,5 +9,11 @@ func _ready() -> void:
 	player = get_tree().get_first_node_in_group("Player")
 	look_at.target_node = player.target_node.get_path()
 
+var can_safely_trigger := false
 func trigger_cutscene():
-	animation_player.play("kill")
+	can_safely_trigger = true
+
+func _on_visible_on_screen_notifier_3d_screen_entered() -> void:
+	print_debug("visible")
+	if can_safely_trigger:
+		animation_player.play("kill")

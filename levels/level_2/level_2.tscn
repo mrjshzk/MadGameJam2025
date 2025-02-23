@@ -219,7 +219,7 @@ interaction_node_target = NodePath("Target")
 metadata/_custom_type_script = "uid://cojj3it64upvp"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="GroundFlower"]
-transform = Transform3D(-0.0891995, 0, 0.0452046, 0, 0.1, 0, -0.0452046, 0, -0.0891995, 0, 0, 0)
+transform = Transform3D(-0.0891995, 0, 0.0452046, 0, 0.1, 0, -0.0452046, 0, -0.0891995, 0, -0.483761, 0)
 gi_mode = 2
 mesh = ExtResource("7_1vf62")
 
@@ -231,7 +231,7 @@ shape = SubResource("CylinderShape3D_8y2in")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15798, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="GroundFlower"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.5, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4, 0)
 light_energy = 2.0
 shadow_enabled = true
 shadow_bias = 0.04
@@ -261,7 +261,7 @@ shape = SubResource("CylinderShape3D_8y2in")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15798, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="GroundFlower2"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.5, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4, 0)
 light_energy = 2.0
 shadow_enabled = true
 shadow_bias = 0.04
@@ -279,7 +279,7 @@ interaction_node_target = NodePath("Target")
 metadata/_custom_type_script = "uid://cojj3it64upvp"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="GroundFlower3"]
-transform = Transform3D(0.089685, 0, 0.0442336, 0, 0.1, 0, -0.0442336, 0, 0.089685, 0, 0, 0)
+transform = Transform3D(0.089685, 0, 0.0442336, 0, 0.1, 0, -0.0442336, 0, 0.089685, 0, -0.092877, 0)
 gi_mode = 2
 mesh = ExtResource("11_25w0s")
 
@@ -291,7 +291,7 @@ shape = SubResource("CylinderShape3D_8y2in")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15798, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="GroundFlower3"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.5, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4, 0)
 light_energy = 2.0
 shadow_enabled = true
 shadow_bias = 0.04
@@ -321,7 +321,7 @@ shape = SubResource("CylinderShape3D_8y2in")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15798, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="GroundFlower4"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.5, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4, 0)
 light_energy = 2.0
 shadow_enabled = true
 shadow_bias = 0.04
