@@ -308,10 +308,10 @@ transform = Transform3D(-2.18557e-09, 0, 0.05, 0, 0.05, 0, -0.05, 0, -2.18557e-0
 mesh = ExtResource("8_md8fn")
 
 [node name="Target" type="Node3D" parent="Base/Vaso/LastFlower"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0484619, 0.398856, -0.0680479)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.427497, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Base/Vaso/LastFlower"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.509949, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.143629, 0.509949, 0)
 shape = SubResource("CylinderShape3D_md8fn")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
@@ -358,6 +358,7 @@ next_floor = 2
 metadata/_custom_type_script = "uid://dcpb7bvi8a6hd"
 
 [node name="flowers" type="Node3D" parent="."]
+visible = false
 
 [node name="surface" type="MeshInstance3D" parent="flowers"]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -0.384253, -0.0872655, 0.672818)

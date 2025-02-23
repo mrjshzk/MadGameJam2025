@@ -1854,7 +1854,7 @@ gi_mode = 2
 mesh = ExtResource("7_h0yvh")
 
 [node name="HandAttachMent" type="BoneAttachment3D" parent="MonsterSkeleton"]
-transform = Transform3D(0.987507, -0.112776, 0.110058, 0.141958, 0.3335, -0.932001, 0.0684032, 0.935981, 0.345343, 0.174819, 0.334007, 0.267577)
+transform = Transform3D(0.987507, -0.112777, 0.110059, 0.14196, 0.333504, -0.931999, 0.0684028, 0.935979, 0.345347, 0.174819, 0.334007, 0.267577)
 bone_name = "LeftHand"
 bone_idx = 10
 

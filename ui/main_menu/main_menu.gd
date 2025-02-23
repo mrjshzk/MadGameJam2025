@@ -11,8 +11,16 @@ extends Control
 func _ready() -> void:
 	play_button.pressed.connect(on_play_pressed, CONNECT_ONE_SHOT)
 	quit_button.pressed.connect(get_tree().quit)
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	create_tween().tween_property(
+		fade_out,
+		"self_modulate",
+		Color.TRANSPARENT,
+		2.0
+	)
 
 func on_play_pressed():
+	fade_out.color = Color.WHITE
 	create_tween().tween_property(
 		fade_out,
 		"self_modulate",

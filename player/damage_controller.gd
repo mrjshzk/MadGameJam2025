@@ -5,10 +5,10 @@ extends Control
 @export var animation_player: AnimationPlayer
 
 func trigger_animation():
-	animation_player.play("Hit")
+	animation_player.play("OnHit")
 	animation_player.animation_finished.connect(
 		func(animation_name: String):
-			if animation_name == "Hit": return_to_main_menu()
+			if animation_name == "OnHit": return_to_main_menu()
 			, CONNECT_ONE_SHOT
 	)
 

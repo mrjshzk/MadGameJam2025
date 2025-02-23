@@ -26,7 +26,6 @@ extends CharacterBody3D
 
 @export_group("IK helper")
 @export var target_node : Node3D
-
 @export var damage_controller: DamageController
 #endregion
 
