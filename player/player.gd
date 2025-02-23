@@ -72,7 +72,6 @@ func _physics_process(delta: float) -> void:
 	#endregion
 
 #region HelperFunctions
-
 func disable_input():
 	camera.stop_receiving_input = true
 	disable_keyboard()

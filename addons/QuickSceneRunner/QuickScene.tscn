@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b6qyveu25w7m5"]
 
-[ext_resource type="Script" path="res://addons/QuickSceneRunner/QuickScene.gd" id="1_jio3d"]
+[ext_resource type="Script" uid="uid://vgxvrf6druhw" path="res://addons/QuickSceneRunner/QuickScene.gd" id="1_jio3d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lmcyq"]
 content_margin_left = 4.0
@@ -11,7 +11,7 @@ bg_color = Color(0, 0, 0, 0.12549)
 
 [sub_resource type="Gradient" id="Gradient_xcoja"]
 offsets = PackedFloat32Array(1)
-colors = PackedColorArray(0.890196, 0.52549, 0.52549, 0.3)
+colors = PackedColorArray(0.070775, 0.426815, 0.674278, 0.3)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_qyinb"]
 gradient = SubResource("Gradient_xcoja")
