@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://dlv4m6rwis0qs"]
+
+[ext_resource type="Texture2D" uid="uid://c8ivpcj8etc3x" path="res://prefabs/monstro/textures/criatura_text_madeira_3_madeira_BaseColor.png" id="1_r2sd1"]
+[ext_resource type="Texture2D" uid="uid://bkv0kdrfm2phy" path="res://prefabs/monstro/textures/criatura_text_madeira_3_madeira_Metallic-madeira_3_madeira_Roughness.png" id="2_ywn0l"]
+[ext_resource type="Texture2D" uid="uid://uf5ehmcm5n82" path="res://prefabs/monstro/textures/criatura_text_madeira_3_madeira_Normal.png" id="3_nn84s"]
+
+[resource]
+resource_name = "Material.001"
+cull_mode = 2
+albedo_texture = ExtResource("1_r2sd1")
+metallic = 1.0
+metallic_texture = ExtResource("2_ywn0l")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_ywn0l")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_nn84s")

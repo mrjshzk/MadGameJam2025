@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://d4dewwt4t3wgv"]
+[gd_scene load_steps=38 format=3 uid="uid://d4dewwt4t3wgv"]
 
 [ext_resource type="Script" uid="uid://cj6mv4dje8y7f" path="res://player/camera/Camera.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://clpuc8vx34ndw" path="res://player/player.gd" id="1_rkbax"]
@@ -20,6 +20,10 @@
 [ext_resource type="AudioStream" uid="uid://dg8v6gb3pv6do" path="res://player/watering/watering-02.wav" id="13_bjvpn"]
 [ext_resource type="AudioStream" uid="uid://bloig3wlnkowp" path="res://player/watering/watering-03.wav" id="14_s7qer"]
 [ext_resource type="AudioStream" uid="uid://c126xliacd4ee" path="res://player/watering/watering-04.wav" id="15_g4c7l"]
+[ext_resource type="Script" uid="uid://dvgh6mlvgyby3" path="res://player/damage_controller.gd" id="21_x7c3f"]
+[ext_resource type="PackedScene" uid="uid://cicgprie3egj1" path="res://ui/main_menu/main_menu.tscn" id="22_bjvpn"]
+[ext_resource type="Animation" uid="uid://c8x2y8iek4nyv" path="res://player/damage/Hit.res" id="22_knn7v"]
+[ext_resource type="AudioStream" uid="uid://cycnwcfqnoraw" path="res://player/damage/522168__magnuswaker__gut-rip-bladed.wav" id="24_g4c7l"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
 radius = 0.37
@@ -149,13 +153,46 @@ _data = {
 radius = 0.3
 height = 1.8
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "interaction_manager", "sway_manager", "footstep_player", "footstep_timer", "target_node")]
+[sub_resource type="Animation" id="Animation_g4c7l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Fader:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Fader:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7pqkx"]
+_data = {
+&"Hit": ExtResource("22_knn7v"),
+&"RESET": SubResource("Animation_g4c7l")
+}
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "interaction_manager", "sway_manager", "footstep_player", "footstep_timer", "target_node", "damage_controller") groups=["Player"]]
 script = ExtResource("1_rkbax")
 input_mapping_context = ExtResource("2_g1dw6")
 movement_definition = ExtResource("3_qjkh3")
 interaction_definition = ExtResource("4_g6k8r")
 camera = NodePath("Camera")
-walking_speed = 3.0
+walking_speed = 6.0
 interaction_manager = NodePath("Camera/InteractionManager")
 sway_manager = NodePath("Camera/RegadorController/Sway")
 footstep_player = NodePath("AudioStreamPlayer3D")
@@ -163,6 +200,7 @@ footstep_timer = NodePath("FootstepTimer")
 dirt_sounds = Array[AudioStream]([ExtResource("5_tqiix"), ExtResource("6_e7oew"), ExtResource("7_c35mf"), ExtResource("8_65viv")])
 concrete_sounds = Array[AudioStream]([ExtResource("9_x7c3f"), ExtResource("9_x7c3f"), ExtResource("10_bjvpn"), ExtResource("11_s7qer")])
 target_node = NodePath("LookAtTarget")
+damage_controller = NodePath("CanvasLayer/Damage")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
@@ -174,7 +212,7 @@ script = ExtResource("1_oul6g")
 body = NodePath("..")
 metadata/_custom_type_script = "uid://cj6mv4dje8y7f"
 
-[node name="InteractionManager" type="RayCast3D" parent="Camera" node_paths=PackedStringArray("player", "animation_player", "regador", "particle_emitter", "watering_player", "hud", "interactable_description")]
+[node name="InteractionManager" type="RayCast3D" parent="Camera" node_paths=PackedStringArray("player", "animation_player", "regador", "particle_emitter", "watering_player", "fader", "hud", "interactable_description")]
 target_position = Vector3(0, 0, -1.5)
 collision_mask = 2
 script = ExtResource("6_g6k8r")
@@ -187,6 +225,7 @@ interaction_trans_type = 3
 watering_player = NodePath("../RegadorController/AudioStreamPlayer3D")
 return_ease_type = 2
 return_trans_type = 1
+fader = NodePath("../../CanvasLayer/Fader")
 hud = NodePath("../../CanvasLayer/Control")
 interactable_description = NodePath("../../CanvasLayer/Control/Label")
 
@@ -290,6 +329,36 @@ theme_override_font_sizes/font_size = 50
 text = "Cenas"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Fader" type="ColorRect" parent="CanvasLayer"]
+z_index = 5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_7pqkx")
+}
+
+[node name="Damage" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("animation_player")]
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("21_x7c3f")
+main_menu = ExtResource("22_bjvpn")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/Damage"]
+stream = ExtResource("24_g4c7l")
 
 [node name="FootstepTimer" type="Timer" parent="."]
 wait_time = 0.6

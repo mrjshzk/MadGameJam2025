@@ -15,7 +15,7 @@ func _ready() -> void:
 	continue_button.pressed.connect(on_continue_pressed, CONNECT_ONE_SHOT)
 
 func on_continue_pressed():
-	fader.color = Color.WHITE
+	fader.color = Color.BLACK
 	create_tween().tween_property(
 		fader,
 		"self_modulate",

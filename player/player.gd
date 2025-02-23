@@ -26,6 +26,8 @@ extends CharacterBody3D
 
 @export_group("IK helper")
 @export var target_node : Node3D
+
+@export var damage_controller: DamageController
 #endregion
 
 var input_disabled: bool = false:
@@ -70,8 +72,12 @@ func _physics_process(delta: float) -> void:
 	#endregion
 
 #region HelperFunctions
+
 func disable_input():
 	camera.stop_receiving_input = true
+	disable_keyboard()
+
+func disable_keyboard():
 	sway_manager.disabled = true
 	GUIDE.disable_mapping_context(input_mapping_context)
 	velocity = Vector3.ZERO

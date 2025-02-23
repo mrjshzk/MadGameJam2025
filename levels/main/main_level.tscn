@@ -8,27 +8,19 @@
 [ext_resource type="PackedScene" uid="uid://kyg4q6q4phfk" path="res://prefabs/monstro/monstro.tscn" id="3_uo2iw"]
 [ext_resource type="PackedScene" uid="uid://dgy0md1c0im4y" path="res://prefabs/elevador/elevador.tscn" id="4_fylya"]
 [ext_resource type="AudioStream" uid="uid://ddkujfknene0n" path="res://levels/audio/rain_thunder_loop.wav" id="7_urkyg"]
-
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_uo2iw"]
-auto_exposure_scale = 0.1
-auto_exposure_speed = 10.0
-dof_blur_far_transition = 0.1
-dof_blur_amount = 0.01
-auto_exposure_min_sensitivity = 37.87
+[ext_resource type="PackedScene" uid="uid://b26im6d21bs3f" path="res://levels/level_3/level_3.tscn" id="9_4sjnk"]
 
 [node name="MainLevel" type="Node3D"]
 script = ExtResource("1_c007h")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_171xp")
-camera_attributes = SubResource("CameraAttributesPractical_uo2iw")
 
 [node name="Level1" parent="." instance=ExtResource("1_rhx6h")]
 
-[node name="Monstro" parent="Level1" node_paths=PackedStringArray("player") instance=ExtResource("3_uo2iw")]
+[node name="Monstro" parent="Level1" instance=ExtResource("3_uo2iw")]
 transform = Transform3D(-1, 0, 1.73205, 0, 2, 0, -1.73205, 0, -1, 5.43602, 0.141774, 0.542957)
 visible = false
-player = NodePath("../../Player")
 
 [node name="Level2" parent="." instance=ExtResource("2_fobds")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.596, 10.1, 0)
@@ -43,3 +35,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4091, 1.27, 0.035)
 stream = ExtResource("7_urkyg")
 volume_db = -17.0
 autoplay = true
+
+[node name="Level3" parent="." instance=ExtResource("9_4sjnk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.194, 20.715, -0.35)

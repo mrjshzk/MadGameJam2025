@@ -20,8 +20,13 @@ extends RayCast3D
 @export var return_trans_type: Tween.TransitionType = 0
 
 @export_group("UI")
+@export var fader: ColorRect
 @export var hud: Control
 @export var interactable_description: Label
+
+func _ready() -> void:
+	await get_tree().create_timer(1.0, false).timeout
+	create_tween().tween_property(fader, "self_modulate", Color.TRANSPARENT, 2.0)
 
 func _physics_process(delta: float) -> void:
 	if is_colliding():
