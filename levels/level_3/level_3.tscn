@@ -318,7 +318,7 @@ mesh = ExtResource("8_md8fn")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.611702, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Base/Vaso/LastFlower"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17314, 0.571472, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.244473, 0.571472, 0)
 shape = SubResource("BoxShape3D_p5b22")
 debug_color = Color(0.308522, 0.493734, 1, 0.42)
 
