@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://x57dij3g46wo"
+path.s3tc="res://.godot/imported/criatura_text_madeira_3_madeira_BaseColor.png-b85b4170512464d4d9be545b09174e6a.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "cd96252b8317dc7f5fa94f3cce7f47ca"
+}
+
+[deps]
+
+source_file="res://import/criatura_text_madeira_3_madeira_BaseColor.png"
+dest_files=["res://.godot/imported/criatura_text_madeira_3_madeira_BaseColor.png-b85b4170512464d4d9be545b09174e6a.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

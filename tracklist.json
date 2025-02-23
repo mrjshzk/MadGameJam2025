@@ -1,0 +1,17 @@
+{
+	"tracks": [
+		{
+			"name": "Ethereal",
+			"stream": [
+				"ethereal_loop.wav",
+			]
+		},
+		{
+			"name": "Soft",
+			"stream": [
+				"soft_piano.mp3",
+			]
+		}
+		
+	]
+}

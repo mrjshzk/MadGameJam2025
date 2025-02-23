@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bqr2qufarjxdf"
+path.s3tc="res://.godot/imported/criatura_text_base2_olhos_Normal.png-e0b771acabd6c0288619d8f8c3018fc3.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "b73f48b35022c6b8c7cb9b6d0f2f68d1"
+}
+
+[deps]
+
+source_file="res://import/criatura_text_base2_olhos_Normal.png"
+dest_files=["res://.godot/imported/criatura_text_base2_olhos_Normal.png-e0b771acabd6c0288619d8f8c3018fc3.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=1
+roughness/src_normal="res://import/criatura_text_base2_olhos_Normal.png"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0
