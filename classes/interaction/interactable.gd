@@ -6,7 +6,7 @@ signal started_interaction
 @export var interaction_node_target: Node3D
 @export var interaction_time := 2.0
 @export var disabled := false
-@export var description: String = "interactable"
+@export var description: String = "Flower"
 
 func _ready() -> void:
 	set_collision_layer_value(2, true)

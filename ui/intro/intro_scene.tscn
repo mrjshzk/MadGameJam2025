@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://um81oit6ne23"]
+[gd_scene load_steps=6 format=3 uid="uid://um81oit6ne23"]
 
 [ext_resource type="Script" uid="uid://c7qc3h3e6olkc" path="res://ui/intro/intro_scene.gd" id="1_tafdl"]
-[ext_resource type="PackedScene" uid="uid://mqdbc7ncf5tk" path="res://ui/viewport/game_viewport.tscn" id="2_w5ldm"]
 [ext_resource type="Texture2D" uid="uid://b166lljq4hyvc" path="res://ui/intro/background.png" id="3_p4qjp"]
 [ext_resource type="Texture2D" uid="uid://drgtu802b84mu" path="res://ui/intro/button_normal.png" id="4_q5tug"]
 [ext_resource type="Texture2D" uid="uid://c4xhdgw4rse34" path="res://ui/intro/button_pressed.png" id="5_burb4"]
@@ -15,7 +14,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tafdl")
-game_scene = ExtResource("2_w5ldm")
 continue_button = NodePath("TextureButton")
 fader = NodePath("Fader")
 

@@ -4,6 +4,7 @@ extends Control
 @export var fader: ColorRect
 
 func _ready() -> void:
+	FootstepTypeManager.current_type = FootstepTypeManager.TYPE.CONCRETE
 	await get_tree().create_timer(1.0, false).timeout
 	create_tween().tween_property(
 		fader,

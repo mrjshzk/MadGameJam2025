@@ -251,7 +251,8 @@ bind/51/name = &"RightLittleDistal"
 bind/51/bone = -1
 bind/51/pose = Transform3D(99.1575, -5.86765, 11.5483, -6.03961, -99.8109, 1.14464, 11.4593, -1.83238, -99.3244, -0.227605, -0.47276, 0.778374)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_inr0o"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_08abo"]
+size = Vector3(1, 0.726532, 1.93994)
 
 [sub_resource type="Animation" id="Animation_qc133"]
 length = 0.001
@@ -1846,7 +1847,7 @@ transform_mode = 3
 transform = Transform3D(0.89611, 0.443764, -0.00777101, -0.142886, 0.271869, -0.951667, -0.420203, 0.853909, 0.307032, -0.0882319, 0.32844, 0.279126)
 
 [node name="NeckAttachment" type="BoneAttachment3D" parent="MonsterSkeleton"]
-transform = Transform3D(0.999651, -0.0262354, 0.00316274, 0.0264223, 0.994178, -0.104462, -0.000403713, 0.104509, 0.994524, 0.049708, 0.785778, 0.195268)
+transform = Transform3D(0.999651, -0.0262364, 0.0031625, 0.0264232, 0.994178, -0.104462, -0.000403367, 0.104509, 0.994524, 0.0497078, 0.785778, 0.195268)
 bone_name = "Head"
 bone_idx = 5
 
@@ -1862,7 +1863,7 @@ gi_mode = 2
 mesh = ExtResource("5_qc133")
 
 [node name="BackAttachment" type="BoneAttachment3D" parent="MonsterSkeleton"]
-transform = Transform3D(0.999487, 0.0283144, -0.0150035, -0.0316423, 0.945985, -0.322663, 0.00505702, 0.322973, 0.946395, 0.0505957, 0.624416, 0.113678)
+transform = Transform3D(0.999487, 0.0283134, -0.0150035, -0.0316414, 0.945985, -0.322663, 0.00505736, 0.322972, 0.946395, 0.0505957, 0.624416, 0.113678)
 bone_name = "UpperChest"
 bone_idx = 3
 
@@ -1879,7 +1880,7 @@ gi_mode = 2
 mesh = ExtResource("7_h0yvh")
 
 [node name="HandAttachMent" type="BoneAttachment3D" parent="MonsterSkeleton"]
-transform = Transform3D(0.987507, -0.112777, 0.110059, 0.14196, 0.333504, -0.931999, 0.0684029, 0.935979, 0.345347, 0.174819, 0.334007, 0.267577)
+transform = Transform3D(0.987507, -0.112776, 0.110058, 0.14196, 0.333504, -0.931999, 0.0684026, 0.935979, 0.345347, 0.174819, 0.334007, 0.267577)
 bone_name = "LeftHand"
 bone_idx = 10
 
@@ -1888,8 +1889,8 @@ transform = Transform3D(1, 0, -3.72529e-09, -7.45058e-09, 1, 2.98023e-08, 2.0489
 script = ExtResource("8_qc133")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MonsterSkeleton/HandAttachMent/Area3D"]
-transform = Transform3D(0.1, 4.65661e-10, -4.65661e-10, 0, 0.1, 0, 9.31323e-10, 0, 0.1, 0, 0, 0)
-shape = SubResource("SphereShape3D_inr0o")
+transform = Transform3D(0.1, -1.86265e-09, 0, 2.32831e-09, 0.1, 3.72529e-09, 3.72529e-09, 5.58794e-08, 0.1, 5.96046e-08, -0.00645608, 0.0146242)
+shape = SubResource("BoxShape3D_08abo")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
