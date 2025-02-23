@@ -200,9 +200,11 @@ stream = ExtResource("3_dj0pt")
 max_distance = 50.0
 
 [node name="LightmapGI" type="LightmapGI" parent="."]
-quality = 2
-bounces = 4
+quality = 3
+supersampling = true
+bounces = 5
 interior = true
+denoiser_strength = 0.2
 texel_scale = 2.0
 light_data = ExtResource("2_jniqj")
 

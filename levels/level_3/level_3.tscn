@@ -250,6 +250,12 @@ monstro = NodePath("Monstro")
 short_circuit_player = NodePath("Base/Explosion")
 
 [node name="LightmapGI" type="LightmapGI" parent="."]
+quality = 3
+supersampling = true
+bounces = 5
+interior = true
+denoiser_strength = 0.2
+texel_scale = 2.0
 light_data = ExtResource("5_0c4fo")
 
 [node name="DirtSwitcher" type="Area3D" parent="."]
@@ -366,7 +372,6 @@ next_floor = 2
 metadata/_custom_type_script = "uid://dcpb7bvi8a6hd"
 
 [node name="flowers" type="Node3D" parent="."]
-visible = false
 
 [node name="surface" type="MeshInstance3D" parent="flowers"]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -0.384253, -0.0872655, 0.672818)
