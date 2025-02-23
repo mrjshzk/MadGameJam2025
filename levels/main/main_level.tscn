@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://blms1k8l0s33p"]
+[gd_scene load_steps=8 format=3 uid="uid://blms1k8l0s33p"]
 
 [ext_resource type="Environment" uid="uid://bykxv1n3cb86e" path="res://default_env.tres" id="1_171xp"]
 [ext_resource type="PackedScene" uid="uid://bgkesljsjbvc5" path="res://levels/level_1/level_1.tscn" id="1_rhx6h"]
@@ -7,10 +7,18 @@
 [ext_resource type="PackedScene" uid="uid://kyg4q6q4phfk" path="res://prefabs/monstro/monstro.tscn" id="3_uo2iw"]
 [ext_resource type="PackedScene" uid="uid://dgy0md1c0im4y" path="res://prefabs/elevador/elevador.tscn" id="4_fylya"]
 
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_uo2iw"]
+auto_exposure_scale = 0.1
+auto_exposure_speed = 10.0
+dof_blur_far_transition = 0.1
+dof_blur_amount = 0.01
+auto_exposure_min_sensitivity = 37.87
+
 [node name="MainLevel" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_171xp")
+camera_attributes = SubResource("CameraAttributesPractical_uo2iw")
 
 [node name="Level1" parent="." instance=ExtResource("1_rhx6h")]
 

@@ -112,7 +112,7 @@ data = PackedVector3Array(-0.5553, 1.0766, 0.7921, -0.5553, 1.1467, -0.8711, -0.
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ji2dr"]
 
-[node name="Elevador" type="Node3D" node_paths=PackedStringArray("area", "moving_player", "close_player", "open_player", "door_r", "door_l", "button_1", "button_2", "button_3") groups=["Elevator"]]
+[node name="Elevador" type="Node3D" node_paths=PackedStringArray("area", "moving_player", "close_player", "open_player", "door_r", "door_l", "button_1", "button_2", "button_3", "lightmap", "timer", "lamp") groups=["Elevator"]]
 script = ExtResource("1_ffydx")
 area = NodePath("Area")
 moving_player = NodePath("Moving")
@@ -123,6 +123,9 @@ door_l = NodePath("Portas/Porta_E")
 button_1 = NodePath("Botao1")
 button_2 = NodePath("Botao2")
 button_3 = NodePath("Botao3")
+lightmap = NodePath("LightmapGI")
+timer = NodePath("Timer")
+lamp = NodePath("Luz")
 
 [node name="Luz" type="MeshInstance3D" parent="."]
 transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0.473357, 1.01355, 0)
@@ -264,11 +267,28 @@ texel_scale = 2.0
 light_data = ExtResource("13_ytxcm")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.119022, 0.198942, 0.634744)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.119022, 0.0631741, 0.669599)
 light_energy = 0.1
+light_specular = 0.0
 light_bake_mode = 1
 shadow_enabled = true
-omni_range = 0.260087
+omni_range = 0.0846205
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.119022, 0.184872, 0.669599)
+light_energy = 0.1
+light_specular = 0.0
+light_bake_mode = 1
+shadow_enabled = true
+omni_range = 0.0846205
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.119022, 0.302745, 0.669599)
+light_energy = 0.1
+light_specular = 0.0
+light_bake_mode = 1
+shadow_enabled = true
+omni_range = 0.0846205
 
 [node name="Hum" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("16_u01sm")
@@ -279,3 +299,6 @@ max_distance = 3.0
 stream = ExtResource("17_233uk")
 volume_db = 30.0
 max_db = 6.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2

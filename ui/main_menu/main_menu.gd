@@ -17,7 +17,7 @@ func on_play_pressed():
 		fade_out,
 		"self_modulate",
 		Color.WHITE,
-		1.0
+		2.5
 	).finished.connect(
 		func():
 			get_tree().change_scene_to_packed(intro_scene)

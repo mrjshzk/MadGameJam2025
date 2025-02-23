@@ -24,6 +24,12 @@ enum FLOOR_TYPE {
 @export var button_2: ElevatorButton
 @export var button_3: ElevatorButton
 
+@export_group("Flicker")
+@export var lightmap: LightmapGI
+@export var timer: Timer
+@export var lamp: MeshInstance3D
+
+
 @onready var button_mapping : Dictionary[FLOOR_TYPE, ElevatorButton] = {
 	FLOOR_TYPE.FLOOR_1: button_1,
 	FLOOR_TYPE.FLOOR_2: button_2,
@@ -51,10 +57,12 @@ func _ready() -> void:
 	area.body_entered.connect(_on_area_body_entered)
 	area.body_exited.connect(_on_area_body_exited)
 	allow_floor(FLOOR_TYPE.FLOOR_1)
+	timer.timeout.connect(flicker_timer_finished)
 
 func _on_area_body_entered(body: Node3D):
 	if body is Player:
 		close_doors()
+		stop_flicker()
 		player_inside = true
 
 func _on_area_body_exited(body: Node3D):
@@ -86,3 +94,18 @@ func allow_floor(floor: FLOOR_TYPE):
 			button_mapping[_floor].disabled = false
 		else:
 			button_mapping[_floor].disabled = true
+
+func flicker_timer_finished():
+	lightmap.visible = not lightmap.visible
+	var lamp_emission_mat: StandardMaterial3D = lamp.get_active_material(1)
+	lamp_emission_mat.emission_enabled = not lamp_emission_mat.emission_enabled
+	timer.wait_time = randf_range(0.1, 0.4)
+
+func trigger_flicker():
+	timer.start()
+
+func stop_flicker():
+	lightmap.visible = true
+	var lamp_emission_mat: StandardMaterial3D = lamp.get_active_material(1)
+	lamp_emission_mat.emission_enabled = true
+	timer.stop()
