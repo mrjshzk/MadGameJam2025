@@ -26,7 +26,7 @@ extends CharacterBody3D
 
 @export_group("IK helper")
 @export var target_node : Node3D
-@export var damage_controller: DamageController
+@export var damage_controller: DamageManager
 #endregion
 
 var input_disabled: bool = false:

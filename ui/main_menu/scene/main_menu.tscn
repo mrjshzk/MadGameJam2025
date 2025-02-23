@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cicgprie3egj1"]
+[gd_scene load_steps=3 format=3 uid="uid://cicgprie3egj1"]
 
-[ext_resource type="Script" uid="uid://cqvdjplldjntd" path="res://ui/main_menu/main_menu.gd" id="1_uhj5c"]
-[ext_resource type="PackedScene" uid="uid://um81oit6ne23" path="res://ui/intro/intro_scene.tscn" id="2_mu8pm"]
-[ext_resource type="PackedScene" uid="uid://bh2nw4in2chxp" path="res://ui/intro/level/level_2.tscn" id="3_omy8q"]
+[ext_resource type="Script" uid="uid://cqvdjplldjntd" path="res://ui/main_menu/main_menu.gd" id="1_7te8m"]
+[ext_resource type="PackedScene" uid="uid://bh2nw4in2chxp" path="res://ui/intro/level/level_2.tscn" id="3_7wyfl"]
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("play_button", "options_button", "quit_button", "fade_out")]
 layout_mode = 3
@@ -11,8 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_uhj5c")
-intro_scene = ExtResource("2_mu8pm")
+script = ExtResource("1_7te8m")
 play_button = NodePath("MarginContainer/CenterContainer/HBoxContainer/Player")
 options_button = NodePath("MarginContainer/CenterContainer/HBoxContainer/Options")
 quit_button = NodePath("MarginContainer/CenterContainer/HBoxContainer/Quit")
@@ -43,7 +41,7 @@ msaa_3d = 2
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
-[node name="Level2" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_omy8q")]
+[node name="Level2" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_7wyfl")]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

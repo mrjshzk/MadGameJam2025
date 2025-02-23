@@ -1,7 +1,6 @@
-class_name DamageController
-extends Control
+class_name DamageManager
+extends Node
 
-@export var main_menu: PackedScene
 @export var animation_player: AnimationPlayer
 
 func trigger_animation():
@@ -13,4 +12,4 @@ func trigger_animation():
 	)
 
 func return_to_main_menu():
-	get_tree().change_scene_to_packed(main_menu)
+	get_tree().change_scene_to_file("res://ui/main_menu/scene/main_menu.tscn")

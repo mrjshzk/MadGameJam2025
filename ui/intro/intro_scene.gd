@@ -1,6 +1,5 @@
 extends Control
 
-@export var game_scene: PackedScene
 @export var continue_button: TextureButton
 @export var fader: ColorRect
 
@@ -23,5 +22,5 @@ func on_continue_pressed():
 		2.5
 	).finished.connect(
 		func():
-			get_tree().change_scene_to_packed(game_scene)
+			get_tree().change_scene_to_file("res://ui/viewport/game_viewport.tscn")
 	)

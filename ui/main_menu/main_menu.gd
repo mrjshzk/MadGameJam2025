@@ -1,7 +1,6 @@
 extends Control
 
 
-@export var intro_scene: PackedScene
 
 @export var play_button: Button
 @export var options_button: Button
@@ -25,8 +24,8 @@ func on_play_pressed():
 		fade_out,
 		"self_modulate",
 		Color.WHITE,
-		2.5
+		3.0
 	).finished.connect(
 		func():
-			get_tree().change_scene_to_packed(intro_scene)
+			get_tree().change_scene_to_file("res://ui/intro/intro_scene.tscn")
 	)

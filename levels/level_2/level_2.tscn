@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://57swsa2eimos"]
+[gd_scene load_steps=39 format=4 uid="uid://57swsa2eimos"]
 
 [ext_resource type="ArrayMesh" uid="uid://ccjavq4hhqaqj" path="res://levels/level_2/Nivel2_Cube_001.res" id="1_0b444"]
 [ext_resource type="Script" uid="uid://ca4m14t6jmrea" path="res://levels/level_2/level_2.gd" id="1_5ts7o"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dcpb7bvi8a6hd" path="res://classes/objetive_manager/objetive_manager.gd" id="5_8r3qo"]
 [ext_resource type="Script" uid="uid://cojj3it64upvp" path="res://classes/interaction/ground_flower.gd" id="6_8r3qo"]
 [ext_resource type="ArrayMesh" uid="uid://bjk2gltamyi03" path="res://levels/props/natureza/meshes/cenas_Cylinder_002.res" id="7_0butd"]
+[ext_resource type="ArrayMesh" uid="uid://bx68dseol8qfp" path="res://levels/props/natureza/meshes/cenas_Cylinder_010.res" id="7_1vf62"]
 [ext_resource type="Script" uid="uid://73q00xopklrm" path="res://classes/autoloads/dirt_switcher.gd" id="8_8y2in"]
 [ext_resource type="ArrayMesh" uid="uid://1mr6e4788urq" path="res://levels/props/natureza/meshes/cenas_Cylinder_005.res" id="10_un0ug"]
 [ext_resource type="ArrayMesh" uid="uid://bp3oswq1qa2o8" path="res://levels/props/natureza/meshes/cenas_Cylinder_006.res" id="11_25w0s"]
@@ -184,12 +185,14 @@ short_circuit_player = NodePath("Level/AudioStreamPlayer3D")
 
 [node name="Level" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_0b444")
+metadata/_edit_lock_ = true
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Level"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_0butd")
 debug_color = Color(0, 0.6, 0.701961, 0.0313726)
+metadata/_edit_lock_ = true
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
@@ -216,9 +219,9 @@ interaction_node_target = NodePath("Target")
 metadata/_custom_type_script = "uid://cojj3it64upvp"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="GroundFlower"]
-transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, 0, 0)
+transform = Transform3D(-0.0891995, 0, 0.0452046, 0, 0.1, 0, -0.0452046, 0, -0.0891995, 0, 0, 0)
 gi_mode = 2
-mesh = ExtResource("19_yiikh")
+mesh = ExtResource("7_1vf62")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GroundFlower"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08435, 0)
@@ -228,14 +231,15 @@ shape = SubResource("CylinderShape3D_8y2in")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15798, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="GroundFlower"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.5, 0)
 light_energy = 2.0
 shadow_enabled = true
 shadow_bias = 0.04
 shadow_opacity = 0.5
 shadow_blur = 8.371
-spot_angle = 33.1719
-spot_angle_attenuation = 4.43828
+spot_range = 7.0
+spot_angle = 30.0
+spot_angle_attenuation = 1.46409
 
 [node name="GroundFlower2" type="StaticBody3D" parent="." node_paths=PackedStringArray("mesh", "interaction_node_target") groups=["Regavel"]]
 transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, -2.55642, -0.621401, 12.6633)
@@ -257,14 +261,15 @@ shape = SubResource("CylinderShape3D_8y2in")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15798, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="GroundFlower2"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.5, 0)
 light_energy = 2.0
 shadow_enabled = true
 shadow_bias = 0.04
 shadow_opacity = 0.5
 shadow_blur = 8.371
-spot_angle = 33.1719
-spot_angle_attenuation = 4.43828
+spot_range = 7.0
+spot_angle = 30.0
+spot_angle_attenuation = 1.46409
 
 [node name="GroundFlower3" type="StaticBody3D" parent="." node_paths=PackedStringArray("mesh", "interaction_node_target") groups=["Regavel"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.07855, -0.446523, -4.13103)
@@ -274,7 +279,7 @@ interaction_node_target = NodePath("Target")
 metadata/_custom_type_script = "uid://cojj3it64upvp"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="GroundFlower3"]
-transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, 0, 0)
+transform = Transform3D(0.089685, 0, 0.0442336, 0, 0.1, 0, -0.0442336, 0, 0.089685, 0, 0, 0)
 gi_mode = 2
 mesh = ExtResource("11_25w0s")
 
@@ -286,14 +291,15 @@ shape = SubResource("CylinderShape3D_8y2in")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15798, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="GroundFlower3"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.5, 0)
 light_energy = 2.0
 shadow_enabled = true
 shadow_bias = 0.04
 shadow_opacity = 0.5
 shadow_blur = 8.371
-spot_angle = 33.1719
-spot_angle_attenuation = 4.43828
+spot_range = 7.0
+spot_angle = 30.0
+spot_angle_attenuation = 1.46409
 
 [node name="GroundFlower4" type="StaticBody3D" parent="." node_paths=PackedStringArray("mesh", "interaction_node_target") groups=["Regavel"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.92145, -0.731413, -6.13103)
@@ -303,7 +309,7 @@ interaction_node_target = NodePath("Target")
 metadata/_custom_type_script = "uid://cojj3it64upvp"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="GroundFlower4"]
-transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, 0, 0)
+transform = Transform3D(0.0522573, 0, 0.0852595, 0, 0.1, 0, -0.0852595, 0, 0.0522573, 0, 0, 0)
 gi_mode = 2
 mesh = ExtResource("10_un0ug")
 
@@ -315,14 +321,15 @@ shape = SubResource("CylinderShape3D_8y2in")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15798, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="GroundFlower4"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.5, 0)
 light_energy = 2.0
 shadow_enabled = true
 shadow_bias = 0.04
 shadow_opacity = 0.5
 shadow_blur = 8.371
-spot_angle = 33.1719
-spot_angle_attenuation = 4.43828
+spot_range = 7.0
+spot_angle = 30.0
+spot_angle_attenuation = 1.46409
 
 [node name="DirtSwitcher" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
