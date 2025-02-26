@@ -10,13 +10,13 @@ extends Node3D
 func _ready() -> void:
 	var elevator: Elevator = get_tree()\
 	.get_first_node_in_group("Elevator")
-	elevator.area.body_exited.connect(
+	elevator.close_area.body_exited.connect(
 		func(body: Node3D):
 			if not body is Player:
 				return
 			if not elevator.current_floor == Elevator.FLOOR_TYPE.FLOOR_3:
 				return
-			GlobalMusicPlayer.fade_to_track("GrandPiano", 0.15, 10.0)
+			GlobalMusicPlayer.fade_to_track("GrandPiano", 0.1, 10.0)
 	)
 
 func _on_last_flower_finished_interaction() -> void:

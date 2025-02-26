@@ -23,5 +23,5 @@ func on_continue_pressed():
 		2.5
 	).finished.connect(
 		func():
-			get_tree().change_scene_to_file("res://ui/viewport/game_viewport.tscn")
+			get_tree().change_scene_to_file("res://levels/main/main_level.tscn")
 	)

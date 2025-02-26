@@ -10,10 +10,15 @@ func _ready() -> void:
 	look_at.target_node = player.target_node.get_path()
 
 var can_safely_trigger := false
+
 func trigger_cutscene():
 	can_safely_trigger = true
+	
+@onready var area_3d: Area3D = $MonsterSkeleton/HandAttachMent/Area3D
 
 func _on_visible_on_screen_notifier_3d_screen_entered() -> void:
 	print_debug("visible")
 	if can_safely_trigger:
+		area_3d.set_collision_layer_value(1, true)
+		area_3d.set_collision_mask_value(1, true)
 		animation_player.play("kill")

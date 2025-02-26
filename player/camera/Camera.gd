@@ -4,6 +4,7 @@ extends Camera3D
 @export var body: Node3D
 @export var camera_lerp_speed := 15.0
 @export var stop_receiving_input := true
+@export var mouse_smoothing := true
 
 var sensitivity := 1.0
 
@@ -13,6 +14,18 @@ var roll : float: # rotation x
 var yaw : float # rotation y
 var target_basis := Basis.IDENTITY
 var camera_target_basis := Basis.IDENTITY
+
+func _ready() -> void:
+	SettingsManager.mouse_sens_changed.connect(
+		func(value: float):
+			print("sens changed")
+			sensitivity = value
+	)
+	
+	SettingsManager.mouse_smoothing_toggled.connect(
+		func(val: bool):
+			mouse_smoothing = val
+	)
 
 func _input(event: InputEvent) -> void:
 	if stop_receiving_input:
@@ -24,8 +37,12 @@ func _input(event: InputEvent) -> void:
 		camera_target_basis = Basis(Vector3(1,0,0), roll)
 
 func _process(delta: float) -> void:
-	basis  = basis.slerp(camera_target_basis, camera_lerp_speed * delta)
-	body.basis  = body.basis.slerp(target_basis, camera_lerp_speed * delta)
+	if mouse_smoothing:
+		basis  = basis.slerp(camera_target_basis, camera_lerp_speed * delta)
+		body.basis  = body.basis.slerp(target_basis, camera_lerp_speed * delta)
+	else:
+		basis  = camera_target_basis
+		body.basis  = target_basis
 
 func setup(_rotation: Vector3) -> void:
 	stop_receiving_input = false

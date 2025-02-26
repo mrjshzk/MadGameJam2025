@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cyd1wpt2h4fo4" path="res://levels/materials/dirt_petals/flower_scattered_dirt_rough_2k.jpg" id="4_j0ocd"]
 
 [resource]
+cull_mode = 2
 albedo_texture = ExtResource("1_utcw2")
 roughness_texture = ExtResource("4_j0ocd")
 normal_enabled = true

@@ -1,10 +1,11 @@
-[gd_scene load_steps=37 format=3 uid="uid://d4dewwt4t3wgv"]
+[gd_scene load_steps=41 format=3 uid="uid://d4dewwt4t3wgv"]
 
 [ext_resource type="Script" uid="uid://cj6mv4dje8y7f" path="res://player/camera/Camera.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://clpuc8vx34ndw" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="Resource" uid="uid://xq2u8obgfqyj" path="res://player/input/input_mapping.tres" id="2_g1dw6"]
 [ext_resource type="Resource" uid="uid://bsheq1aat10ks" path="res://player/input/input_definitions/movement.tres" id="3_qjkh3"]
 [ext_resource type="Resource" uid="uid://c24ek2u6nyxgx" path="res://player/input/input_definitions/interact.tres" id="4_g6k8r"]
+[ext_resource type="Resource" uid="uid://bri0ai7h8mfrb" path="res://player/input/input_definitions/pause.tres" id="5_g4c7l"]
 [ext_resource type="AudioStream" uid="uid://voo04hyaoacc" path="res://player/footsteps/Footstep_Sand_Walking_1_01.WAV" id="5_tqiix"]
 [ext_resource type="AudioStream" uid="uid://b21ukitcpxagy" path="res://player/footsteps/Footstep_Sand_Walking_1_02.WAV" id="6_e7oew"]
 [ext_resource type="Script" uid="uid://ciwoq6gpfxlff" path="res://player/interaction_manager.gd" id="6_g6k8r"]
@@ -21,10 +22,12 @@
 [ext_resource type="AudioStream" uid="uid://bloig3wlnkowp" path="res://player/watering/watering-03.wav" id="14_s7qer"]
 [ext_resource type="AudioStream" uid="uid://c126xliacd4ee" path="res://player/watering/watering-04.wav" id="15_g4c7l"]
 [ext_resource type="Script" uid="uid://dvgh6mlvgyby3" path="res://player/damage_manager.gd" id="21_bjvpn"]
+[ext_resource type="Script" uid="uid://dd73r8pvq8qgk" path="res://player/settings/settings.gd" id="21_s7qer"]
 [ext_resource type="AudioStream" uid="uid://cycnwcfqnoraw" path="res://player/damage/player_death_sfx.wav" id="21_x7c3f"]
+[ext_resource type="Shader" uid="uid://bpsnsey2iktf6" path="res://player/settings/blur.gdshader" id="23_knn7v"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
-radius = 0.37
+radius = 0.3
 height = 1.8
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8t03j"]
@@ -147,9 +150,9 @@ _data = {
 &"rest_pose": SubResource("Animation_8t03j")
 }
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_hg6s5"]
-radius = 0.3
-height = 1.8
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7pqkx"]
+shader = ExtResource("23_knn7v")
+shader_parameter/sigma = 7.471
 
 [sub_resource type="Animation" id="Animation_bjvpn"]
 resource_name = "OnHit"
@@ -237,11 +240,17 @@ _data = {
 &"RESET": SubResource("Animation_s7qer")
 }
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "interaction_manager", "sway_manager", "footstep_player", "footstep_timer", "target_node", "damage_controller") groups=["Player"]]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_knn7v"]
+radius = 0.3
+height = 1.8
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("pause_menu", "camera", "interaction_manager", "sway_manager", "footstep_player", "footstep_timer", "target_node", "damage_controller") groups=["Player"]]
 script = ExtResource("1_rkbax")
 input_mapping_context = ExtResource("2_g1dw6")
 movement_definition = ExtResource("3_qjkh3")
 interaction_definition = ExtResource("4_g6k8r")
+pause_definition = ExtResource("5_g4c7l")
+pause_menu = NodePath("CanvasLayer/Crosshair/Settings")
 camera = NodePath("Camera")
 walking_speed = 3.0
 interaction_manager = NodePath("Camera/InteractionManager")
@@ -291,6 +300,7 @@ bob_amount = 0.05
 sway_rotation = Vector3(0.2, 0.2, 0.2)
 
 [node name="Regador" type="MeshInstance3D" parent="Camera/RegadorController/Sway"]
+layers = 2
 gi_mode = 2
 mesh = ExtResource("8_rgyib")
 skeleton = NodePath("../../..")
@@ -322,13 +332,16 @@ libraries = {
 &"": SubResource("AnimationLibrary_8t03j")
 }
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-cast_shadow = 0
-gi_mode = 0
-mesh = SubResource("CapsuleMesh_hg6s5")
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FadeRect" type="ColorRect" parent="CanvasLayer"]
+z_index = 10
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Crosshair" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -355,6 +368,129 @@ texture = ExtResource("10_8t03j")
 expand_mode = 3
 stretch_mode = 5
 
+[node name="Settings" type="Control" parent="CanvasLayer/Crosshair" node_paths=PackedStringArray("player", "resume_button", "quit_button", "smoothing_checkbox", "sensitivity", "music_volume", "master_volume")]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("21_s7qer")
+player = NodePath("../../..")
+resume_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/Resume")
+quit_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/Quit")
+smoothing_checkbox = NodePath("PanelContainer/MarginContainer/VBoxContainer2/MouseSmoothing")
+sensitivity = NodePath("PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer/SensSlider")
+music_volume = NodePath("PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer3/MusicVolSlider")
+master_volume = NodePath("PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer2/MasterVolSlider")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Crosshair/Settings"]
+material = SubResource("ShaderMaterial_7pqkx")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Crosshair/Settings"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Crosshair/Settings/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Crosshair/Settings/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Resume" type="Button" parent="CanvasLayer/Crosshair/Settings/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="Quit" type="Button" parent="CanvasLayer/Crosshair/Settings/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Crosshair/Settings/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="MouseSmoothing" type="CheckBox" parent="CanvasLayer/Crosshair/Settings/PanelContainer/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+button_pressed = true
+text = "Mouse Smoothing"
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Crosshair/Settings/PanelContainer/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Crosshair/Settings/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+text = "Sensitivity"
+
+[node name="SensSlider" type="HSlider" parent="CanvasLayer/Crosshair/Settings/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 5.0
+step = 0.0
+value = 1.0
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Crosshair/Settings/PanelContainer/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Crosshair/Settings/PanelContainer/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Crosshair/Settings/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+text = "Master Vol"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MasterVolSlider" type="HSlider" parent="CanvasLayer/Crosshair/Settings/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 2.0
+step = 0.0
+value = 1.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/Crosshair/Settings/PanelContainer/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Crosshair/Settings/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer3"]
+layout_mode = 2
+text = "Music Vol  "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicVolSlider" type="HSlider" parent="CanvasLayer/Crosshair/Settings/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 2.0
+step = 0.0
+value = 1.0
+
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
@@ -362,6 +498,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Control"]
 layout_mode = 1
@@ -393,15 +530,6 @@ libraries = {
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/DamageManager"]
 stream = ExtResource("21_x7c3f")
 
-[node name="FadeRect" type="ColorRect" parent="CanvasLayer"]
-z_index = 10
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
 [node name="FootstepTimer" type="Timer" parent="."]
 wait_time = 0.6
 autostart = true
@@ -411,5 +539,10 @@ max_distance = 4.0
 
 [node name="LookAtTarget" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28646, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_knn7v")
 
 [connection signal="timeout" from="FootstepTimer" to="." method="_on_footstep_timer_timeout"]

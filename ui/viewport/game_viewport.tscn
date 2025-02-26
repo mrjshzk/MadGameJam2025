@@ -19,9 +19,8 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
-handle_input_locally = false
+msaa_2d = 2
 msaa_3d = 2
-use_occlusion_culling = true
 audio_listener_enable_2d = true
 audio_listener_enable_3d = true
 size = Vector2i(1920, 1080)

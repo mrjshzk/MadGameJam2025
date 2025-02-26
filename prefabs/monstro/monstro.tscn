@@ -4,6 +4,7 @@
 [ext_resource type="Material" uid="uid://d2d20yg0f4gyv" path="res://prefabs/monstro/materials/pele.tres" id="2_08a56"]
 [ext_resource type="Material" uid="uid://dwffhr6aie587" path="res://prefabs/monstro/materials/olhos.tres" id="3_4f8c4"]
 [ext_resource type="ArrayMesh" uid="uid://vvti2buvx34d" path="res://prefabs/monstro/meshes/cabeca_frente.res" id="4_inr0o"]
+[ext_resource type="Material" uid="uid://dxwbpwv47add" path="res://prefabs/monstro/materials/madeira.tres" id="4_tkhxn"]
 [ext_resource type="Material" uid="uid://bjb2meid40cbp" path="res://prefabs/monstro/materials/Material.tres" id="5_8bxrx"]
 [ext_resource type="ArrayMesh" uid="uid://b2i3mwwf4j6ic" path="res://prefabs/monstro/meshes/cabeca_atras.res" id="5_qc133"]
 [ext_resource type="ArrayMesh" uid="uid://c5dfuv0ufyw31" path="res://prefabs/monstro/meshes/costas_cima.res" id="6_ctiqb"]
@@ -12,7 +13,6 @@
 [ext_resource type="Script" uid="uid://blhbt67up2m3i" path="res://prefabs/monstro/hand_attach_ment.gd" id="8_qc133"]
 [ext_resource type="AudioStream" uid="uid://c4f23nnh3s5xo" path="res://prefabs/monstro/bone_break.wav" id="9_ctiqb"]
 [ext_resource type="Material" uid="uid://c720a8e03bl33" path="res://prefabs/monstro/materials/Material.002.tres" id="9_tkhxn"]
-[ext_resource type="AudioStream" uid="uid://dh5feat01gwpo" path="res://prefabs/monstro/wendigo_growl.mp3" id="13_08abo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6vpr0"]
 resource_name = "Material.004"
@@ -369,18 +369,6 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(1.19989, 0.308514, 0.40243)]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("WendigoGrowl:playing")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_ri1og"]
@@ -1322,18 +1310,6 @@ tracks/63/keys = {
 "method": &"play"
 }]
 }
-tracks/64/type = "value"
-tracks/64/imported = false
-tracks/64/enabled = true
-tracks/64/path = NodePath("WendigoGrowl:playing")
-tracks/64/interp = 1
-tracks/64/loop_wrap = true
-tracks/64/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_653t1"]
 _data = {
@@ -1847,12 +1823,13 @@ transform_mode = 3
 transform = Transform3D(0.89611, 0.443764, -0.00777101, -0.142886, 0.271869, -0.951667, -0.420203, 0.853909, 0.307032, -0.0882319, 0.32844, 0.279126)
 
 [node name="NeckAttachment" type="BoneAttachment3D" parent="MonsterSkeleton"]
-transform = Transform3D(0.844581, 0.156375, -0.512084, -0.535225, 0.272895, -0.799414, 0.0147365, 0.94925, 0.314178, 0.0786499, 0.553407, 0.347029)
+transform = Transform3D(0.999651, -0.0262364, 0.0031625, 0.0264232, 0.994178, -0.104462, -0.000403367, 0.104509, 0.994524, 0.0497078, 0.785778, 0.195268)
 bone_name = "Head"
 bone_idx = 5
 
 [node name="Cima" type="MeshInstance3D" parent="MonsterSkeleton/NeckAttachment"]
 transform = Transform3D(3.49407e-05, 0.00488538, -0.999989, 0.00694397, 0.999964, 0.00488551, 0.999977, -0.00694406, 1.01526e-06, 0.00923944, 0.280235, 0.18608)
+material_override = ExtResource("4_tkhxn")
 gi_mode = 2
 mesh = ExtResource("4_inr0o")
 
@@ -1863,7 +1840,7 @@ gi_mode = 2
 mesh = ExtResource("5_qc133")
 
 [node name="BackAttachment" type="BoneAttachment3D" parent="MonsterSkeleton"]
-transform = Transform3D(0.828321, 0.0832099, -0.554041, -0.559101, 0.0593537, -0.826972, -0.0359279, 0.994763, 0.0956867, 0.0823221, 0.560474, 0.166385)
+transform = Transform3D(0.999487, 0.0283134, -0.0150035, -0.0316414, 0.945985, -0.322663, 0.00505736, 0.322972, 0.946395, 0.0505957, 0.624416, 0.113678)
 bone_name = "UpperChest"
 bone_idx = 3
 
@@ -1880,12 +1857,14 @@ gi_mode = 2
 mesh = ExtResource("7_h0yvh")
 
 [node name="HandAttachMent" type="BoneAttachment3D" parent="MonsterSkeleton"]
-transform = Transform3D(0.981935, -0.164442, -0.0936166, 0.0437324, 0.678569, -0.733233, 0.1841, 0.715893, 0.673502, 0.0474837, 0.181473, 0.780631)
+transform = Transform3D(0.987507, -0.112776, 0.110058, 0.14196, 0.333504, -0.931999, 0.0684026, 0.935979, 0.345347, 0.174819, 0.334007, 0.267577)
 bone_name = "LeftHand"
 bone_idx = 10
 
 [node name="Area3D" type="Area3D" parent="MonsterSkeleton/HandAttachMent"]
 transform = Transform3D(1, 0, -3.72529e-09, -7.45058e-09, 1, 2.98023e-08, 2.04891e-08, 0, 1, -0.00720039, 0.0136333, 0.0785765)
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("8_qc133")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MonsterSkeleton/HandAttachMent/Area3D"]
@@ -1897,16 +1876,12 @@ libraries = {
 &"": SubResource("AnimationLibrary_653t1")
 }
 autoplay = "crouch"
+speed_scale = 1.4
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_qc133")
 max_distance = 50.0
 max_polyphony = 10
-
-[node name="WendigoGrowl" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("13_08abo")
-max_db = 6.0
-max_distance = 50.0
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.60898, 2.39386)

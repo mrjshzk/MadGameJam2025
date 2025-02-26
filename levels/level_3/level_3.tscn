@@ -209,7 +209,7 @@ shader_parameter/specular = 0.5
 shader_parameter/scale_h = 1.0
 shader_parameter/scale_w = 1.0
 shader_parameter/scale_var = -0.25
-shader_parameter/grass_strength = 0.55
+shader_parameter/grass_strength = 0.339
 shader_parameter/optimization_by_distance = false
 shader_parameter/optimization_level = 7.0
 shader_parameter/optimization_dist_min = 10.0
@@ -251,7 +251,7 @@ short_circuit_player = NodePath("Base/Explosion")
 [node name="LightmapGI" type="LightmapGI" parent="."]
 quality = 3
 supersampling = true
-bounces = 5
+bounces = 10
 interior = true
 denoiser_strength = 0.2
 texel_scale = 2.0
@@ -358,16 +358,18 @@ metadata/_custom_type_script = "uid://dcpb7bvi8a6hd"
 [node name="flowers" type="Node3D" parent="."]
 
 [node name="surface" type="MeshInstance3D" parent="flowers"]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -0.384253, -0.0872655, 0.672818)
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -0.384253, -1.08236, 0.672818)
 visible = false
 mesh = SubResource("ArrayMesh_mc5n5")
 skeleton = NodePath("")
 
 [node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="flowers"]
+visible = false
 gi_mode = 2
 multimesh = SubResource("MultiMesh_adulk")
 
 [node name="MultiMeshInstance3D2" type="MultiMeshInstance3D" parent="flowers"]
+visible = false
 gi_mode = 2
 multimesh = SubResource("MultiMesh_e36aa")
 
@@ -376,6 +378,7 @@ gi_mode = 2
 multimesh = SubResource("MultiMesh_k20uf")
 
 [node name="MultiMeshInstance3D4" type="MultiMeshInstance3D" parent="flowers"]
+visible = false
 gi_mode = 2
 multimesh = SubResource("MultiMesh_n7yk7")
 
@@ -392,6 +395,7 @@ gi_mode = 2
 multimesh = SubResource("MultiMesh_t8ssf")
 
 [node name="MultiMeshInstance3D8" type="MultiMeshInstance3D" parent="flowers"]
+visible = false
 gi_mode = 2
 multimesh = SubResource("MultiMesh_sfqu1")
 
@@ -401,7 +405,6 @@ multimesh = SubResource("MultiMesh_13ljr")
 
 [node name="Props" type="Node3D" parent="flowers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4689, -38.2125)
-visible = false
 
 [node name="CenasCylinder005" type="MeshInstance3D" parent="flowers/Props"]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.400292, 0, 0)
@@ -453,6 +456,7 @@ gi_mode = 2
 multimesh = SubResource("MultiMesh_0vogn")
 script = ExtResource("8_dq2kg")
 texture_albedo = ExtResource("7_8t4gc")
+grass_strength = 0.339
 sgt_radius = 3.1
 sgt_density = 25
 sgt_scale = 1.0

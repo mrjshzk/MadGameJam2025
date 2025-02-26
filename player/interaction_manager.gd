@@ -27,6 +27,8 @@ extends RayCast3D
 func _ready() -> void:
 	await get_tree().create_timer(1.0, false).timeout
 	create_tween().tween_property(fader, "self_modulate", Color.TRANSPARENT, 2.0)
+	await get_tree().create_timer(1.2, false).timeout
+	player.enable_input()
 
 func _physics_process(delta: float) -> void:
 	if is_colliding():

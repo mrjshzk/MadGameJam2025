@@ -10,13 +10,13 @@ func _ready() -> void:
 	level_manager.objetive_just_completed.connect(on_completion)
 	var elevator: Elevator = get_tree()\
 	.get_first_node_in_group("Elevator")
-	elevator.area.body_exited.connect(
+	elevator.close_area.body_exited.connect(
 		func(body: Node3D):
 			if not body is Player:
 				return
 			if not elevator.current_floor == Elevator.FLOOR_TYPE.FLOOR_2:
 				return
-			GlobalMusicPlayer.fade_to_track("Ethereal", 0.2, 5.0)
+			GlobalMusicPlayer.fade_to_track("Ethereal", 0.15, 8.0)
 	)
 
 var mat : StandardMaterial3D = preload("res://levels/materials/concrete_1/concrete_1.tres")

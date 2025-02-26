@@ -6,6 +6,8 @@ extends CharacterBody3D
 @export var input_mapping_context: GUIDEMappingContext
 @export var movement_definition: GUIDEAction
 @export var interaction_definition: GUIDEAction
+@export var pause_definition: GUIDEAction
+@export var pause_menu: PauseMenu
 
 @export_group("Camera")
 @export var camera: Camera
@@ -39,7 +41,6 @@ var input_disabled: bool = false:
 
 func _ready() -> void:
 	camera.setup(self.rotation_degrees)
-	GUIDE.enable_mapping_context(input_mapping_context)
 
 func _physics_process(delta: float) -> void:
 	if interaction_definition.value_bool == true:
@@ -61,14 +62,12 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	#region Debug
-	if OS.has_feature("editor"):
-		if Input.is_action_just_pressed("debug_toggle_input"):
-			input_disabled = not input_disabled
-		
-		if Input.is_action_just_pressed("debug_quit"):
-			get_tree().quit(0)
-	#endregion
+	if pause_definition.value_bool:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		pause_menu.show()
+		pause_menu.resume_button.grab_focus()
+		GUIDE.disable_mapping_context(input_mapping_context)
+		get_tree().paused = true
 
 #region HelperFunctions
 func disable_input():

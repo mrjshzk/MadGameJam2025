@@ -1,6 +1,5 @@
 class_name Elevator extends Node3D
 
-@export var player_inside := true
 
 enum FLOOR_TYPE {
 	FLOOR_1,
@@ -8,7 +7,9 @@ enum FLOOR_TYPE {
 	FLOOR_3
 }
 
+var player_inside := true
 @export var area: Area3D
+@export var close_area: Area3D
 @export var moving_player : AudioStreamPlayer3D
 @export_group("Portas")
 @export var close_player: AudioStreamPlayer3D
@@ -29,6 +30,7 @@ enum FLOOR_TYPE {
 @export var timer: Timer
 @export var lamp: MeshInstance3D
 
+@export var safeguard_cols: Array[StaticBody3D]
 
 @onready var button_mapping : Dictionary[FLOOR_TYPE, ElevatorButton] = {
 	FLOOR_TYPE.FLOOR_1: button_1,
@@ -44,7 +46,7 @@ func go_to_floor(floor: FLOOR_TYPE):
 	create_tween()\
 	.set_ease(Tween.EASE_IN_OUT)\
 	.set_trans(Tween.TRANS_SINE)\
-	.tween_property(self, "position:y", position.y + 10, 5.0)\
+	.tween_property(self, "position:y", position.y + 10, 7.5)\
 	.finished.connect(
 		func():
 			moving_player.stop()
@@ -55,26 +57,34 @@ func go_to_floor(floor: FLOOR_TYPE):
 
 func _ready() -> void:
 	area.body_entered.connect(_on_area_body_entered)
-	area.body_exited.connect(_on_area_body_exited)
+	close_area.body_exited.connect(_on_area_body_exited)
 	allow_floor(FLOOR_TYPE.FLOOR_1)
 	timer.timeout.connect(flicker_timer_finished)
+	safeguard_cols.all(func(col: StaticBody3D): col.set_collision_layer_value(1, false))
 
 func _on_area_body_entered(body: Node3D):
 	if body is Player:
-		close_doors()
-		stop_flicker()
-		player_inside = true
+		if not player_inside:
+			area.set_collision_mask_value(1, false)
+			player_inside = true
+			close_doors()
+			stop_flicker()
+			button_1.set_collision_layer_value(2, true)
+			button_2.set_collision_layer_value(2, true)
+			button_3.set_collision_layer_value(2, true)
 
 func _on_area_body_exited(body: Node3D):
 	if body is Player:
-		print("played exited")
+		area.set_collision_mask_value(1, true)
 		player_inside = false
+		
 
 func open_and_allow_floor(floor: FLOOR_TYPE):
 	allow_floor(floor)
 	open_doors()
 
 func open_doors():
+	safeguard_cols.all(func(col: StaticBody3D): col.set_collision_layer_value(1, false); return true)
 	var t := create_tween()
 	t.set_parallel(true)
 	t.tween_property(door_r, "position:z", initial_door_r_z + 0.7, 1.0)
@@ -82,6 +92,7 @@ func open_doors():
 	open_player.play()
 	
 func close_doors():
+	safeguard_cols.all(func(col: StaticBody3D): col.set_collision_layer_value(1, true); return true)
 	var t := create_tween()
 	t.set_parallel(true)
 	t.tween_property(door_r, "position:z", initial_door_r_z, 1.0)
