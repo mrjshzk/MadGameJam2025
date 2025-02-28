@@ -10,7 +10,7 @@ signal objetive_just_completed
 
 func _ready() -> void:
 	elevator = get_tree().get_first_node_in_group("Elevator")
-	elevator.close_area.body_exited.connect(initial_close_doors)
+	elevator.close_area.body_exited.connect(initial_close_doors, CONNECT_ONE_SHOT)
 
 func initial_close_doors(body: Node3D):
 	if is_objective_completed(): return

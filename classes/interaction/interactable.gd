@@ -14,8 +14,7 @@ func _ready() -> void:
 	finished_interaction.connect(on_finished_interaction)
 
 func on_start_interaction():
-	print("starting interaction")
 	get_tree().create_timer(interaction_time).timeout.connect(finished_interaction.emit)
 
 func on_finished_interaction():
-	print("finished")
+	pass

@@ -28,12 +28,12 @@ func _ready() -> void:
 	
 	smoothing_checkbox.toggled.connect(
 		func(val: bool):
-			SettingsManager.mouse_smoothing_toggled.emit(val)
+			SettingsManager.mouse_smoothing = val
 	)
 	
 	sensitivity.value_changed.connect(
 		func(val: float):
-			SettingsManager.mouse_sens_changed.emit(val)
+			SettingsManager.mouse_sens = val
 	)
 	
 	music_volume.value_changed.connect(

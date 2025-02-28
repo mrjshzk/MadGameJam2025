@@ -5,6 +5,7 @@ extends RayCast3D
 @export var animation_player: AnimationPlayer
 @export var regador: MeshInstance3D
 
+@warning_ignore_start("int_as_enum_without_cast")
 @export_group("Animation")
 @export_subgroup("Interaction")
 @export var particle_emitter: GPUParticles3D
@@ -23,6 +24,7 @@ extends RayCast3D
 @export var fader: ColorRect
 @export var hud: Control
 @export var interactable_description: Label
+@warning_ignore_restore("int_as_enum_without_cast")
 
 func _ready() -> void:
 	await get_tree().create_timer(1.0, false).timeout
@@ -30,7 +32,7 @@ func _ready() -> void:
 	await get_tree().create_timer(1.2, false).timeout
 	player.enable_input()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if is_colliding():
 		var collided_object : StaticBody3D = get_collider()
 		if collided_object is Interactable:
@@ -78,18 +80,17 @@ func get_pose(pose_type: POSE_TYPE) -> Transform3D:
 	var target_transform := Transform3D.IDENTITY
 	var target_animation: Animation = animation_player.get_animation(pose_mapping.get(pose_type))
 	var animation_position_track_index : int = target_animation.find_track("Camera/RegadorController/Sway/Regador:position", Animation.TYPE_VALUE)
-	var target_position : Vector3 = target_animation.track_get_key_value(animation_position_track_index, 0)
+	var anim_target_position : Vector3 = target_animation.track_get_key_value(animation_position_track_index, 0)
 	
 	var animation_rotation_track_index : int = target_animation.find_track("Camera/RegadorController/Sway/Regador:rotation", Animation.TYPE_VALUE)
 	var target_rotation : Vector3 = target_animation.track_get_key_value(animation_rotation_track_index, 0)
 	
 	target_transform.basis = Basis.from_euler(target_rotation)
-	target_transform.origin = target_position
+	target_transform.origin = anim_target_position
 	return target_transform
 
 func animate_interaction(collided_object: Interactable):
 	var target_transform := get_pose(POSE_TYPE.INTERACT)
-	var global_pose_pos := regador.to_global(target_transform.origin)
 	var global_interaction_pos := collided_object.interaction_node_target.global_position
 	target_transform.origin = global_interaction_pos
 	

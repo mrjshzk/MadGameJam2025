@@ -40,7 +40,7 @@ var player_inside := true
 
 var current_floor := FLOOR_TYPE.FLOOR_1
 
-func go_to_floor(floor: FLOOR_TYPE):
+func go_to_floor(_floor: FLOOR_TYPE):
 	moving_player.play()
 	await get_tree().create_timer(1.0, false).timeout
 	create_tween()\
@@ -50,7 +50,7 @@ func go_to_floor(floor: FLOOR_TYPE):
 	.finished.connect(
 		func():
 			moving_player.stop()
-			current_floor = floor
+			current_floor = _floor
 			await get_tree().create_timer(1.0, false).timeout
 			open_doors()
 			)
@@ -79,8 +79,8 @@ func _on_area_body_exited(body: Node3D):
 		player_inside = false
 		
 
-func open_and_allow_floor(floor: FLOOR_TYPE):
-	allow_floor(floor)
+func open_and_allow_floor(_floor: FLOOR_TYPE):
+	allow_floor(_floor)
 	open_doors()
 
 func open_doors():
@@ -99,12 +99,12 @@ func close_doors():
 	t.tween_property(door_l, "position:z", initial_door_l_z, 1.0)
 	close_player.play()
 
-func allow_floor(floor: FLOOR_TYPE):
-	for _floor in button_mapping.keys():
-		if _floor == floor:
-			button_mapping[_floor].disabled = false
+func allow_floor(_floor: FLOOR_TYPE):
+	for f in button_mapping.keys():
+		if f == _floor:
+			button_mapping[f].disabled = false
 		else:
-			button_mapping[_floor].disabled = true
+			button_mapping[f].disabled = true
 
 func flicker_timer_finished():
 	lightmap.visible = not lightmap.visible

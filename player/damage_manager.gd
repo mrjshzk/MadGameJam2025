@@ -2,7 +2,7 @@ class_name DamageManager
 extends Node
 
 @export var animation_player: AnimationPlayer
-
+var scene : AsyncScene
 func trigger_animation():
 	animation_player.play("OnHit")
 	animation_player.animation_finished.connect(
@@ -12,4 +12,10 @@ func trigger_animation():
 	)
 
 func return_to_main_menu():
-	get_tree().change_scene_to_file("res://ui/main_menu/scene/main_menu.tscn")
+	scene = AsyncScene.new("res://ui/main_menu/scene/main_menu.tscn", AsyncScene.LoadingSceneOperation.Additive)
+	scene.OnComplete.connect(on_scene_load_complete)
+
+func on_scene_load_complete():
+	var main_level: Node3D = get_tree().get_first_node_in_group("MainLevel")
+	main_level.queue_free()
+	scene.ChangeScene()

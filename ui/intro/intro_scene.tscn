@@ -53,3 +53,4 @@ grow_vertical = 0
 texture_normal = ExtResource("4_q5tug")
 texture_pressed = ExtResource("5_burb4")
 texture_hover = ExtResource("6_lrov6")
+texture_disabled = ExtResource("4_q5tug")

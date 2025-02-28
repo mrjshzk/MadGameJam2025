@@ -17,6 +17,7 @@ func _ready() -> void:
 	)
 
 func on_play_pressed():
+	play_button.disabled = true
 	fade_out.color = Color.WHITE
 	create_tween().tween_property(
 		fade_out,
@@ -25,5 +26,6 @@ func on_play_pressed():
 		1.0
 	).finished.connect(
 		func():
-			get_tree().change_scene_to_file("res://ui/intro/intro_scene.tscn")
+			var scene := AsyncScene.new("res://ui/intro/intro_scene.tscn", AsyncScene.LoadingSceneOperation.Additive)
+			scene.OnComplete.connect(func(): self.queue_free(); scene.ChangeScene())
 	)

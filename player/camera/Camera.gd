@@ -16,9 +16,10 @@ var target_basis := Basis.IDENTITY
 var camera_target_basis := Basis.IDENTITY
 
 func _ready() -> void:
+	sensitivity = SettingsManager.mouse_sens
+	mouse_smoothing = SettingsManager.mouse_smoothing
 	SettingsManager.mouse_sens_changed.connect(
 		func(value: float):
-			print("sens changed")
 			sensitivity = value
 	)
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=4 uid="uid://b26im6d21bs3f"]
+[gd_scene load_steps=47 format=4 uid="uid://b26im6d21bs3f"]
 
 [ext_resource type="ArrayMesh" uid="uid://bneurxboc6xt2" path="res://levels/level_3/level_3.res" id="1_fqu2u"]
 [ext_resource type="Script" uid="uid://up5jmh3k7pt8" path="res://levels/level_3/level_3.gd" id="1_mc5n5"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dsq2licy765y7" path="res://classes/autoloads/concrete_switcher.gd" id="4_1ylvm"]
 [ext_resource type="LightmapGIData" uid="uid://6rbes0iaotlf" path="res://levels/level_3/bake/level_3.lmbake" id="5_0c4fo"]
 [ext_resource type="Material" uid="uid://j4mov4sjc2na" path="res://levels/props/vaso/PlantPot.tres" id="5_md8fn"]
+[ext_resource type="Script" uid="uid://8xknwna4ilf6" path="res://levels/level_3/mesh_instance.gd" id="5_t8ssf"]
 [ext_resource type="Script" uid="uid://dpde38b0mepey" path="res://classes/interaction/last_flower.gd" id="6_8655v"]
 [ext_resource type="Material" uid="uid://cniks8dcncxao" path="res://levels/props/vaso/terra.tres" id="6_mc5n5"]
 [ext_resource type="Texture2D" uid="uid://c4ggdp0kg5wjk" path="res://addons/simplegrasstextured/textures/grassbushcc008.png" id="7_8t4gc"]
@@ -94,8 +95,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_yjum8")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_p5b22"]
-size = Vector3(0.347727, 0.576172, 0.28)
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_p5b22"]
+height = 0.599335
+radius = 0.0986328
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l50qw"]
 resource_name = "terra_"
@@ -268,6 +270,7 @@ shape = SubResource("BoxShape3D_0c4fo")
 
 [node name="Level" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_fqu2u")
+script = ExtResource("5_t8ssf")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Level"]
 
@@ -315,11 +318,11 @@ transform = Transform3D(-2.18557e-09, 0, 0.05, 0, 0.05, 0, -0.05, 0, -2.18557e-0
 mesh = ExtResource("8_md8fn")
 
 [node name="Target" type="Node3D" parent="Base/Vaso/LastFlower"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.611702, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Base/Vaso/LastFlower"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.244473, 0.571472, 0)
-shape = SubResource("BoxShape3D_p5b22")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.170786, 0.432876, 0)
+shape = SubResource("CylinderShape3D_p5b22")
 debug_color = Color(0.308522, 0.493734, 1, 0.42)
 
 [node name="Explosion" type="AudioStreamPlayer3D" parent="Base"]
