@@ -2,7 +2,7 @@
 
 [ext_resource type="LightmapGIData" uid="uid://nyjywi0t3hsc" path="res://levels/level_1/bake/level_1.lmbake" id="1_epb64"]
 [ext_resource type="Material" uid="uid://bcccwgdrdldr3" path="res://levels/materials/concrete_1/concrete_1.tres" id="2_epb64"]
-[ext_resource type="Material" uid="uid://b3ryhw1k51yo4" path="res://levels/materials/light_mat.tres" id="3_iey7c"]
+[ext_resource type="Material" uid="uid://i6gl8da0e7nr" path="res://levels/materials/light_map_fix.tres" id="2_owtu7"]
 [ext_resource type="Material" uid="uid://dmaeb3k8md2vx" path="res://levels/materials/interior_light_mat.tres" id="4_5b03i"]
 [ext_resource type="Script" uid="uid://c8xnwsi700m1m" path="res://levels/level_1/mesh_instance_3d.gd" id="4_owtu7"]
 [ext_resource type="Script" uid="uid://otkk8aevnaly" path="res://levels/props/vaso/vaso.gd" id="5_drths"]
@@ -54,7 +54,7 @@ _surfaces = [{
 "format": 34359742519,
 "index_count": 72,
 "index_data": PackedByteArray("AAABAAIAAAADAAEAAgAEAAAAAgAFAAQABgAHAAgABgAJAAcABwAKAAgABwALAAoADAANAA4ADAAPAA0AEAANAA8AEAARAA0AEgATABQAEgAVABMAFgATABUAFgAXABMAGAAZABoAGAAbABkAGwAcABkAGwAdABwAHgAfACAAHgAhAB8AHwAiACAAHwAjACIA"),
-"material": ExtResource("3_iey7c"),
+"material": ExtResource("2_owtu7"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 36,

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://kyg4q6q4phfk"]
+[gd_scene load_steps=28 format=4 uid="uid://kyg4q6q4phfk"]
 
 [ext_resource type="Script" uid="uid://dmlx08oij6gik" path="res://prefabs/monstro/monstro.gd" id="1_6s6td"]
 [ext_resource type="Texture2D" uid="uid://c111omjn0dw7a" path="res://prefabs/monstro/textures/criatura_text_base2_pele_BaseColor.png" id="2_ddi4o"]
@@ -260,9 +260,6 @@ bind/50/pose = Transform3D(99.1575, -5.86764, 11.5483, -6.03962, -99.8109, 1.144
 bind/51/name = &"RightLittleDistal"
 bind/51/bone = -1
 bind/51/pose = Transform3D(99.1575, -5.86765, 11.5483, -6.03961, -99.8109, 1.14464, 11.4593, -1.83238, -99.3244, -0.227605, -0.47276, 0.778374)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_08abo"]
-size = Vector3(5.51089, 1.04991, 5.14482)
 
 [sub_resource type="Animation" id="Animation_qc133"]
 length = 0.001
@@ -1847,7 +1844,7 @@ transform_mode = 3
 transform = Transform3D(0.89611, 0.443764, -0.00777101, -0.142886, 0.271869, -0.951667, -0.420203, 0.853909, 0.307032, -0.0882319, 0.32844, 0.279126)
 
 [node name="NeckAttachment" type="BoneAttachment3D" parent="MonsterSkeleton"]
-transform = Transform3D(0.844581, 0.156375, -0.512084, -0.535225, 0.272895, -0.799414, 0.0147365, 0.94925, 0.314178, 0.0786499, 0.553407, 0.347029)
+transform = Transform3D(0.999651, -0.0262354, 0.00316274, 0.0264223, 0.994178, -0.104462, -0.000403713, 0.104509, 0.994524, 0.049708, 0.785778, 0.195268)
 bone_name = "Head"
 bone_idx = 5
 
@@ -1864,7 +1861,7 @@ gi_mode = 2
 mesh = ExtResource("5_qc133")
 
 [node name="BackAttachment" type="BoneAttachment3D" parent="MonsterSkeleton"]
-transform = Transform3D(0.828321, 0.0832099, -0.554041, -0.559101, 0.0593537, -0.826972, -0.0359279, 0.994763, 0.0956867, 0.0823221, 0.560474, 0.166385)
+transform = Transform3D(0.999487, 0.0283144, -0.0150035, -0.0316423, 0.945985, -0.322663, 0.00505702, 0.322973, 0.946395, 0.0505957, 0.624416, 0.113678)
 bone_name = "UpperChest"
 bone_idx = 3
 
@@ -1881,7 +1878,7 @@ gi_mode = 2
 mesh = ExtResource("7_h0yvh")
 
 [node name="HandAttachMent" type="BoneAttachment3D" parent="MonsterSkeleton"]
-transform = Transform3D(0.981935, -0.164442, -0.0936166, 0.0437324, 0.678569, -0.733233, 0.1841, 0.715893, 0.673502, 0.0474837, 0.181473, 0.780631)
+transform = Transform3D(0.987507, -0.112777, 0.110059, 0.14196, 0.333504, -0.931999, 0.0684029, 0.935979, 0.345347, 0.174819, 0.334007, 0.267577)
 bone_name = "LeftHand"
 bone_idx = 10
 
@@ -1890,10 +1887,6 @@ transform = Transform3D(1, 0, -3.72529e-09, -7.45058e-09, 1, 2.98023e-08, 2.0489
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("8_qc133")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MonsterSkeleton/HandAttachMent/Area3D"]
-transform = Transform3D(0.0999999, -7.91624e-09, -6.30971e-08, 3.50643e-07, 0.1, -4.54485e-07, 5.28526e-08, 3.35276e-08, 0.0999999, -0.00282735, 0.0097127, 0.0354731)
-shape = SubResource("BoxShape3D_08abo")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
