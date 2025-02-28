@@ -17,6 +17,4 @@ func trigger_cutscene():
 
 func _on_visible_on_screen_notifier_3d_screen_entered() -> void:
 	if can_safely_trigger:
-		area_3d.set_collision_layer_value(1, true)
-		area_3d.set_collision_mask_value(1, true)
 		animation_player.play("kill")

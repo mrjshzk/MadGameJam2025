@@ -8,9 +8,10 @@ var interaction_count_max : int = 0
 
 signal objetive_just_completed
 
+
 func _ready() -> void:
 	elevator = get_tree().get_first_node_in_group("Elevator")
-	elevator.close_area.body_exited.connect(initial_close_doors, CONNECT_ONE_SHOT)
+	elevator.close_area.body_exited.connect(initial_close_doors)
 
 func initial_close_doors(body: Node3D):
 	if is_objective_completed(): return
@@ -26,7 +27,6 @@ func increase_count():
 	if is_objective_completed():
 		objetive_just_completed.emit()
 		elevator.open_and_allow_floor(next_floor)
-		elevator.close_area.set_collision_mask_value(1, true)
 
 func register_objective(interactable: Interactable):
 	interaction_count_max += 1

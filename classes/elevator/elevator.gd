@@ -77,7 +77,6 @@ func _on_area_body_exited(body: Node3D):
 	if body is Player:
 		area.set_collision_mask_value(1, true)
 		player_inside = false
-		
 
 func open_and_allow_floor(_floor: FLOOR_TYPE):
 	allow_floor(_floor)
@@ -98,6 +97,7 @@ func close_doors():
 	t.tween_property(door_r, "position:z", initial_door_r_z, 1.0)
 	t.tween_property(door_l, "position:z", initial_door_l_z, 1.0)
 	close_player.play()
+	close_area.set_collision_mask_value(1, true)
 
 func allow_floor(_floor: FLOOR_TYPE):
 	for f in button_mapping.keys():
